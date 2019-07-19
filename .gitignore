@@ -11,6 +11,9 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore all images stored by paperclip gem.
+public/system/users/*
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
