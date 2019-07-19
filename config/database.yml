@@ -2,7 +2,7 @@ development:
   host: localhost
   username: postgres
   password: postgres
-  database: ubwab
+  database: clean_bee_dev_db
   adapter: postgresql
   encoding: unicode
   pool: 5
