@@ -9,11 +9,13 @@ development:
   port: 5432
 
 production:
-  host: 
-  username: 
-  password: 
-  database: 
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
-  port: 5432
+ url: <%= ENV['DATABASE_URL'] %>
+# production:
+#   host: 
+#   username: 
+#   password: 
+#   database: 
+#   adapter: postgresql
+#   encoding: unicode
+#   pool: 5
+#   port: 5432

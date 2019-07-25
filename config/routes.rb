@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+
+	root to: 'application#home'
 	mount_devise_token_auth_for 'User', at: 'auth'
 	namespace :api do
 		namespace :v1 do
-			get '/test', to: 'users#test'
+			# API routes
 		end
 	end
+
 end
