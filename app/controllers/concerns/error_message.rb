@@ -3,10 +3,6 @@ module ErrorMessage
   def validate_sign_up_request
     if params[:user] && params[:user][:email].present? && params[:user][:password].present? && params[:user][:password_confirmation].present? && params[:user][:user_name].present? && params[:user][:phone].present?
       return resource_already_exist_error if user_already_exist?
-
-    # if params[:user] && params[:user][:email].present? && params[:user][:facebook_id].present?
-    #   return resource_already_exist_error if user_already_exist?
-
     else
       bad_request_error("Missing required parameters", 400)
     end
@@ -14,16 +10,24 @@ module ErrorMessage
 
   def validate_sign_in_params
     if params[:user][:email].present? && params[:user][:phone].present?
-      @resource = User.exist?(params[:user][:email], params[:user][:phone]).first
-      bad_request_error("User not found", 200) unless @resource.present?
+      @resource = User.email_or_phone_exist?(params[:user][:email], params[:user][:phone]).first
+      bad_request_error("User not found", 200) and return unless @resource.present?
+    else
+      bad_request_error("Missing required parameters", 400)
+    end
+  end
+
+  def validate_account_update_request
+    if params[:user][:email].present? || params[:user][:phone].present?
+      return resource_already_exist_error if user_already_exist?
     else
       bad_request_error("Missing required parameters", 400)
     end
   end
 
   def user_already_exist?
-    @resource = User.email_or_phone_already_exist?(params[:user][:email], params[:user][:phone])
-    true if @resource.present?
+    user = User.email_or_phone_exist?(params[:user][:email], params[:user][:phone]).first
+    true if user.present?
   end
 
   def bad_request_error(message, status)

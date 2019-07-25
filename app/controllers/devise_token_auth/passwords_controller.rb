@@ -1,5 +1,6 @@
 module DeviseTokenAuth
   class PasswordsController < DeviseTokenAuth::ApplicationController
+    include UsersHelper
     before_action :set_user_by_token, only: [:update]
     # before_action :validate_redirect_url_param, only: [:create, :edit]
     skip_after_action :update_auth_header, only: [:create, :edit]
@@ -10,16 +11,17 @@ module DeviseTokenAuth
       return render_create_error_missing_email unless resource_params[:email]
 
       @email = get_case_insensitive_field_from_resource_params(:email)
-      @resource = find_resource(:uid, @email) || User.find_by(user_name: resource_params[:email])
+      @resource = find_resource(:uid, @email)
 
       if @resource
         yield @resource if block_given?
-        @resource.send_reset_password_instructions(
-            email: @email,
-            provider: 'email',
-            redirect_url: @redirect_url,
-            client_config: params[:config_name]
-        )
+        # @resource.send_reset_password_instructions(
+        #     email: @email,
+        #     provider: 'email',
+        #     redirect_url: @redirect_url,
+        #     client_config: params[:config_name]
+        # )
+        password_reset @resource
 
         if @resource.errors.empty?
           render_create_success
@@ -73,17 +75,21 @@ module DeviseTokenAuth
       # end
 
       # make sure account doesn't use oauth2 provider
-      @resource = User.find_by_uid(request.headers["uid"])
+      # @resource = User.find_by_uid(request.headers["uid"])
 
-      unless @resource.provider == 'email'
-        return render_update_error_password_not_required
-      end
+      # unless @resource.provider == 'email'
+      #   return render_update_error_password_not_required
+      # end
 
-      return render json: {
-          success: false,
-          message: "Old password is incorrect."
-      } unless @resource.valid_password? params[:old_password]
+      # return render json: {
+      #     success: false,
+      #     message: "Old password is incorrect."
+      # } unless @resource.valid_password? params[:old_password]
 
+      @reset_password_token = params[:reset_password_token]
+      @resource = User.find_by(reset_password_token: @reset_password_token)
+
+      render_not_found_error and return unless @resource.present?
       # ensure that password params were sent
       unless password_resource_params[:password] && password_resource_params[:password_confirmation]
         return render_update_error_missing_password
@@ -92,7 +98,6 @@ module DeviseTokenAuth
       if @resource.send(resource_update_method, password_resource_params)
         @resource.allow_password_change = false if recoverable_enabled?
         @resource.save!
-        @profile = @resource.profile
 
         yield @resource if block_given?
         render 'devise_token_auth/sessions/log_in', status: :ok
@@ -132,8 +137,9 @@ module DeviseTokenAuth
     def render_create_success
       render json: {
           success: true,
-          message: I18n.t('devise_token_auth.passwords.sended', email: @email)
-      }
+          token: @token
+          # message: I18n.t('devise_token_auth.passwords.sended', email: @email)
+      }, status: 200
     end
 
     def render_create_error(errors)
@@ -158,7 +164,7 @@ module DeviseTokenAuth
     def render_update_error_missing_password
       render json: {
           success: false,
-          errors: "Password mismatch"
+          errors: "Missing required parameters"
       }, status: 200
     end
 
@@ -173,7 +179,7 @@ module DeviseTokenAuth
     def render_update_error
       render json: {
           success: false,
-          errors: "Password mismatch"
+          error: "Password mismatch"
       }, status: 200
     end
 
@@ -188,7 +194,10 @@ module DeviseTokenAuth
     end
 
     def render_not_found_error
-      render_error(404, I18n.t('devise_token_auth.passwords.user_not_found', email: @email))
+      render json: {
+        success: false,
+        error: 'Invalid password reset token'
+      }, status: 404
     end
 
     def validate_redirect_url_param

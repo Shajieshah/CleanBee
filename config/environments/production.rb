@@ -89,6 +89,22 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  # ActionMailer settings
+  config.action_mailer.default_options = { from: 'dev@cleanbee.com' }
+  config.action_mailer.default_url_options = { host:'cleanbee.herokuapp.com'}
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.sendgrid.net",
+      :port => 587,
+      :domain => 'gmail.com',
+      :user_name => "apikey",
+      :password => "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",
+      :authentication => :plain,
+      :enable_starttls_auto => true
+  }
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end

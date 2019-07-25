@@ -34,6 +34,10 @@ ActiveRecord::Schema.define(version: 2019_07_19_061210) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.string "phone"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "ride"
     t.string "role", default: "customer"
     t.boolean "phone_verified", default: false
     t.json "tokens"

@@ -3,8 +3,9 @@ module DeviseTokenAuth
     include ErrorMessage
     before_action :set_user_by_token, only: [:destroy, :update]
     before_action :validate_sign_up_request, only: :create
-    before_action :validate_account_update_params, only: :update
-    skip_after_action :update_auth_header, only: :destroy
+    before_action :validate_account_update_request, only: :update
+    # before_action :validate_account_update_params, only: :update
+    skip_after_action :update_auth_header, only: [:destroy]
 
     def create
       begin
@@ -12,9 +13,10 @@ module DeviseTokenAuth
         @resource = User.create!(user_params)
         @client_id, @token = @resource.create_token unless @resource.nil?
         render :sign_up, status: :created
-        bad_request_error(@resource.errors.full_messages.to_sentence, 422) unless @resource.save!
+        bad_request_error(@resource.errors.full_messages.to_sentence, 200) unless @resource.persisted?
+      
       rescue => error
-        bad_request_error(error.message, 422)
+        bad_request_error(error.message, 200)
       end
 
     end
@@ -40,12 +42,12 @@ module DeviseTokenAuth
       if @resource
         if @resource.send(resource_update_method, account_update_params)
           yield @resource if block_given?
-          render_update_success
+          render :update, status: :ok
         else
-          render_update_error
+          bad_request_error(@resource.errors.full_messages.to_sentence, 200)
         end
       else
-        render_update_error_user_not_found
+        bad_request_error("User not found", 200)
       end
     end
 
@@ -63,9 +65,9 @@ module DeviseTokenAuth
       params.permit(*params_for_resource(:sign_up))
     end
 
-    def account_update_params
-      params.permit(*params_for_resource(:account_update))
-    end
+    # def account_update_params
+    #   params.permit(*params_for_resource(:account_update))
+    # end
 
     protected
 
@@ -117,7 +119,13 @@ module DeviseTokenAuth
     private
 
     def user_params
-      params.require(:user).permit(:email, :user_name, :phone, :password, :password_confirmation, :image, :role)
+      params.require(:user).permit(:email, :user_name, :phone, :password, :password_confirmation,
+                                   :image, :role, :address, :ride, :latitude, :longitude )
+    end
+
+    def account_update_params
+      params.require(:user).permit(:email, :user_name, :phone, :image, :role, :address,
+                                   :ride, :latitude, :longitude )
     end
 
     def resource_update_method

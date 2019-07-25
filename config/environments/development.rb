@@ -55,6 +55,22 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
+  # ActionMailer settings
+  config.action_mailer.default_options = { from: 'dev@cleanbee.com' }
+  config.action_mailer.default_url_options = { host:'localhost:3000'}
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.sendgrid.net",
+      :port => 587,
+      :domain => 'gmail.com',
+      :user_name => "apikey",
+      :password => "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",
+      :authentication => :plain,
+      :enable_starttls_auto => true
+  }
+
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker

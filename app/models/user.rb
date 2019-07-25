@@ -8,21 +8,20 @@ class User < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-  scope :email_or_phone_already_exist?, ->(email, phone) {where("email = ? OR  phone = ? ", email, phone)}
-  scope :exist?, ->(email, phone) {where('email = ? OR phone = ?', email, phone)}
+  scope :email_or_phone_exist?, ->(email, phone) {where("email = ? OR  phone = ? ", email, phone)}
 
-  enum role: { customer: "customer", rider: "rider", vendor: "vendor" }
+  enum role: { customer: 'customer', rider: 'rider"', vendor: 'vendor' }
 
-  def customer?
-  	role == "customer"
+  def is_customer?
+  	role.eql? 'customer'
   end
 
-  def vendor?
-  	role == "vendor"
+  def is_rider?
+  	role.eql? 'rider'
   end
 
-  def rider?
-  	role == "rider"
+  def is_vendor?
+  	role.eql? 'vendor'
   end
 
 end

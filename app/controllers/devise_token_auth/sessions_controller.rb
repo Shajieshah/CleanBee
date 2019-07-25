@@ -20,59 +20,20 @@ module DeviseTokenAuth
 
     def create
       begin
-        if params[:user][:provider].eql? "email"
-          @resource = User.exist?(params[:user][:email]).first
-          return bad_request_error("User not found", 200) unless @resource.present?
-          if @resource.valid_password? params[:user][:password]
-            @profile = @resource.profile
-            @client_id, @token = @resource.create_token
-            @resource.save
-            @resource.profile.update(fcm: params[:fcm]) if params[:fcm].present?
-            yield @resource if block_given?
-            render :log_in, status: :ok
-          else
-            bad_request_error("Invalid Login Credentials", 200)
-          end
 
-        elsif params[:user][:provider].eql? "facebook"
-          @resource = User.where('email = ? OR facebook_id = ?', "#{params[:user][:email]}", "#{params[:user][:facebook_id]}").first
-          @profile = @resource.profile if @resource.present?
-          update_header_tokens if @resource.present?
-          return render :log_in if @resource.present?
-          @resource = User.create(email: params[:user][:email], facebook_id: params[:user][:facebook_id],
-                                  uid: params[:user][:email], provider: "facebook",
-                                  user_name: params[:user][:user_name], confirmed_at: Time.now)
-
-          @profile = Profile.create(name: "", about: "", country: "", fcm: params[:fcm], user_id: @resource.id)
-          communities = Community.where(default: true).limit(5)
-          communities.each do |community|
-            @resource.follow(community)
-            CommunityUser.create(user_id: @resource.id, community_id: community.id, role: "user")
-          end
+        @resource = User.email_or_phone_exist?(params[:user][:email], params[:user][:phone]).first
+        return bad_request_error("User not found", 200) unless @resource.present?
+        if @resource.valid_password? params[:user][:password]
+          # @profile = @resource.profile
           @client_id, @token = @resource.create_token
-          @resource.save!
-          update_auth_header
-          render :log_in
-
+          @resource.save
+          # @resource.update(fcm: params[:fcm]) if params[:fcm].present?
+          yield @resource if block_given?
+          render :log_in, status: :ok
         else
-          @resource = User.where('user_name = ? AND provider = ?', "#{params[:user][:user_name]}", "#{params[:user][:provider]}").first
-          @profile = @resource.profile if @resource.present?
-          update_header_tokens if @resource.present?
-          return render :log_in if @resource.present?
-          @resource = User.create(email: params[:user][:email], uid: params[:user][:email], provider: "instagram",
-                                  user_name: params[:user][:user_name], confirmed_at: Time.now)
-
-          @profile = Profile.create(name: "", about: "", country: "", fcm: params[:fcm], user_id: @resource.id)
-          communities = Community.where(default: true).limit(5)
-          communities.each do |community|
-            @resource.follow(community)
-            CommunityUser.create(user_id: @resource.id, community_id: community.id, role: "user")
-          end
-          @client_id, @token = @resource.create_token
-          @resource.save!
-          update_auth_header
-          render :log_in
+          bad_request_error("Invalid Login Credentials", 200)
         end
+
       rescue => error
         bad_request_error(error.message, 200)
       end
@@ -153,8 +114,9 @@ module DeviseTokenAuth
 
     def render_destroy_error
       render json: {
-          success: flase
-      }, status: "User not found"
+          success: false,
+          status: "Invalid Request"
+      }, status: 200
     end
 
     private

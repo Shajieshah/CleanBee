@@ -1,0 +1,1 @@
+User.create(email: 'user@gmail.com', user_name: 'Rana Ali', phone: '03024492335', address: 'Johar Town, Lahore, Pakistan', password: 'password', password_confirmation: 'password')
