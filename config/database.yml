@@ -9,7 +9,8 @@ development:
   port: 5432
 
 production:
- url: <%= ENV['DATABASE_URL'] %>
+  adapter: postgresql
+  url: <%= ENV['DATABASE_URL'] %>
 # production:
 #   host: 
 #   username: 
