@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
+	# include DeviseTokenAuth::Concerns::SetUserByToken
 	skip_before_action :verify_authenticity_token, raise: false
-	include DeviseTokenAuth::Concerns::SetUserByToken
 
 	def home
 	end

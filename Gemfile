@@ -62,6 +62,8 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem 'activeadmin'
+gem 'arctic_admin'
 gem 'devise'
 gem 'devise_token_auth'
 gem 'paperclip', '~> 6.0.0'

@@ -19,7 +19,9 @@ module ErrorMessage
 
   def validate_account_update_request
     if params[:user][:email].present? || params[:user][:phone].present?
-      return resource_already_exist_error if user_already_exist?
+      users = User.where.not(id: current_user.id)
+      taken = users.where("email = ? OR  phone = ? ", params[:user][:email], params[:user][:phone])
+      return resource_already_exist_error if taken
     else
       bad_request_error("Missing required parameters", 400)
     end

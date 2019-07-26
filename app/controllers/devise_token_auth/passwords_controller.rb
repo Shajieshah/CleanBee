@@ -86,8 +86,11 @@ module DeviseTokenAuth
       #     message: "Old password is incorrect."
       # } unless @resource.valid_password? params[:old_password]
 
-      @reset_password_token = params[:reset_password_token]
-      @resource = User.find_by(reset_password_token: @reset_password_token)
+      unless params[:reset_password_token].blank?
+        @resource = User.find_by(reset_password_token: params[:reset_password_token])
+      else
+        @resource = User.find_by(phone: params[:phone])
+      end
 
       render_not_found_error and return unless @resource.present?
       # ensure that password params were sent
@@ -196,7 +199,7 @@ module DeviseTokenAuth
     def render_not_found_error
       render json: {
         success: false,
-        error: 'Invalid password reset token'
+        error: 'User not found'
       }, status: 404
     end
 

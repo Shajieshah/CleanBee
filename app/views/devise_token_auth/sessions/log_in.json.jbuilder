@@ -13,7 +13,7 @@ json.user do
   json.longitude @resource.longitude
   json.ride @resource.ride unless @resource.ride.nil?
   json.phone_verified @resource.phone_verified
-  json.confirmed_at @resource.confirmed_at
+  # json.confirmed_at @resource.confirmed_at
   json.profile_image @resource.image.present? ? @resource.image.url : nil
 
 end

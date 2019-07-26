@@ -39,15 +39,21 @@ module DeviseTokenAuth
     end
 
     def update
-      if @resource
-        if @resource.send(resource_update_method, account_update_params)
-          yield @resource if block_given?
-          render :update, status: :ok
+      begin
+
+        if @resource
+          if @resource.send(resource_update_method, account_update_params)
+            yield @resource if block_given?
+            render :update, status: :ok
+          else
+            bad_request_error(@resource.errors.full_messages.to_sentence, 200)
+          end
         else
-          bad_request_error(@resource.errors.full_messages.to_sentence, 200)
+          bad_request_error("User not found", 200)
         end
-      else
-        bad_request_error("User not found", 200)
+
+      rescue error
+        bad_request_error error.message, 400
       end
     end
 
