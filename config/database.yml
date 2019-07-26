@@ -10,7 +10,7 @@ development:
 
 production:
   adapter: postgresql
-  url: <%= ENV['DATABASE_URL'] %>
+  url: postgres://cblxvdpeowivwh:10b6434618df696e392b4f3b74a57c9b0de32dce6dc88ba8c24035ce3950490d@ec2-54-243-47-196.compute-1.amazonaws.com:5432/d21t7vvbga0of8
 # production:
 #   host: 
 #   username: 
