@@ -1,7 +1,6 @@
 module ErrorMessage
 
   def validate_sign_up_request
-    # byebug
     if params[:user] && params[:user][:email].present? && params[:user][:password].present? && params[:user][:password_confirmation].present? && params[:user][:user_name].present? && params[:user][:phone].present?
       if User.where("email = ? AND phone = ? ", params[:user][:email], params[:user][:phone]).first.present?
         return already_exist_error 'Email and phone number is already used with another account'
@@ -22,6 +21,12 @@ module ErrorMessage
     else
       bad_request_error("Missing required parameters", 400)
     end
+  end
+
+  def validate_account_update_request
+    users = User.where.not(id: current_user.id)
+    taken = users.where("phone = ? ", params[:user][:phone])
+    return already_exist_error 'phone number is already used with another account' if taken
   end
 
   def already_exist_error(error)
