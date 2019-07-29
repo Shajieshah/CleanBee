@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_26_071452) do
+ActiveRecord::Schema.define(version: 2019_07_29_071616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2019_07_26_071452) do
   end
 
   create_table "capabilities", force: :cascade do |t|
-    t.integer "shop_id"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,8 +49,18 @@ ActiveRecord::Schema.define(version: 2019_07_26_071452) do
 
   create_table "laundries", force: :cascade do |t|
     t.string "name"
+    t.float "delivery_cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "shop_capabilities", force: :cascade do |t|
+    t.bigint "capability_id"
+    t.bigint "shop_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["capability_id"], name: "index_shop_capabilities_on_capability_id"
+    t.index ["shop_id"], name: "index_shop_capabilities_on_shop_id"
   end
 
   create_table "shops", force: :cascade do |t|
@@ -61,7 +70,12 @@ ActiveRecord::Schema.define(version: 2019_07_26_071452) do
     t.string "timings"
     t.float "latitude"
     t.float "longitude"
-    t.boolean "active"
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.boolean "active", default: false
+    t.boolean "online", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -100,4 +114,6 @@ ActiveRecord::Schema.define(version: 2019_07_26_071452) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "shop_capabilities", "capabilities"
+  add_foreign_key "shop_capabilities", "shops"
 end

@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
 	namespace :api do
 		namespace :v1 do
+			
+			# Vendor's Shop
+			resources :shop, except: [:new, :edit]
+
 			resources :users do
 				member do
 					post 'verify_user'
