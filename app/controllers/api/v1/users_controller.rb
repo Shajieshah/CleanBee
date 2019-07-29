@@ -20,5 +20,6 @@ module Api::V1
 			params.require(:user).permit(:email, :user_name, :phone, :image, :role, :address,
                                    :ride, :latitude, :longitude )
 		end
+		
 	end
 end

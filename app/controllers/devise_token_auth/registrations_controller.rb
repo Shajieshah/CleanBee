@@ -10,8 +10,9 @@ module DeviseTokenAuth
     def create
       begin
         
-        @resource = User.create!(user_params)
-        @client_id, @token = @resource.create_token unless @resource.nil?
+        @resource = User.new(user_params)
+
+        update_header_tokens if @resource.save!
         render :sign_up, status: :created
         bad_request_error(@resource.errors.full_messages.to_sentence, 200) unless @resource.persisted?
       
@@ -77,6 +78,12 @@ module DeviseTokenAuth
 
     protected
 
+    def update_header_tokens
+      @client_id, @token = @resource.create_token
+      @resource.save!
+      update_auth_header
+    end
+
     def build_resource
       @resource = resource_class.new(sign_up_params)
       @resource.provider = provider
@@ -130,7 +137,7 @@ module DeviseTokenAuth
     end
 
     def account_update_params
-      params.require(:user).permit(:email, :user_name, :phone, :image, :role, :address,
+      params.require(:user).permit(:email, :user_name, :phone, :image, :address,
                                    :ride, :latitude, :longitude )
     end
 
