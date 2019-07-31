@@ -24,7 +24,6 @@ module DeviseTokenAuth
         @resource = User.email_or_phone_exist?(params[:user][:login], params[:user][:login]).first
         return bad_request_error("User not found", 200) unless @resource.present?
         if @resource.valid_password? params[:user][:password]
-          # @profile = @resource.profile
           @client_id, @token = @resource.create_token
           @resource.save
           # @resource.update(fcm: params[:fcm]) if params[:fcm].present?

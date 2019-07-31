@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 
   scope :email_or_phone_exist?, ->(email, phone) { where("email = ? OR  phone = ? ", email, phone) }
 
-  enum role: { customer: 'customer', rider: 'rider"', vendor: 'vendor' }
+  enum role: { customer: 'customer', rider: 'rider' }
 
   def is_customer?
   	role.eql? 'customer'
@@ -21,10 +21,6 @@ class User < ActiveRecord::Base
 
   def is_rider?
   	role.eql? 'rider'
-  end
-
-  def is_vendor?
-  	role.eql? 'vendor'
   end
 
 end
