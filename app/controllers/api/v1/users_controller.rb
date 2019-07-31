@@ -1,7 +1,8 @@
 module Api::V1
 	class UsersController < ApiController
 
-		before_action :authenticate_user!
+		# before_action :authenticate_user!
+		before_action :verify_user_logged_in?
 		include ApplicationHelper
 
 		def show
