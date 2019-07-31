@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 			resources :users do
 				member do
 					post 'verify_user'
+					get 'user_profile'
 			  end
 			end
 		end

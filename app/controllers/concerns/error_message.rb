@@ -24,15 +24,17 @@ module ErrorMessage
   end
 
   def validate_account_update_request
-    users = User.where.not(id: current_user.id)
-    taken = users.where("phone = ? ", params[:user][:phone])
-    return already_exist_error 'phone number is already used with another account' if taken
+    if params[:user][:phone].present?
+      users = User.where.not(id: current_user.id)
+      taken = users.where("phone = ? ", params[:user][:phone])
+      return already_exist_error 'phone number is already used with another account' if !taken.nil?
+    end
   end
 
   def already_exist_error(error)
     render json: {
       success: false,
-      error: error
+      message: error
     }, status: 422
   end
 

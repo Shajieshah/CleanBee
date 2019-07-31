@@ -3,7 +3,7 @@ module DeviseTokenAuth
     include ErrorMessage
     before_action :set_user_by_token, only: [:destroy, :update]
     before_action :validate_sign_up_request, only: :create
-    before_action :validate_account_update_request, only: :update
+    # before_action :validate_account_update_request, only: :update
     # before_action :validate_account_update_params, only: :update
     skip_after_action :update_auth_header, only: [:destroy]
 
@@ -137,7 +137,7 @@ module DeviseTokenAuth
     end
 
     def account_update_params
-      params.require(:user).permit(:user_name, :phone, :image, :address,
+      params.require(:user).permit(:email, :user_name, :phone, :image, :address,
                                    :ride, :latitude, :longitude )
     end
 
