@@ -4,6 +4,10 @@ module Api::V1
 		before_action :authenticate_user!
 		include ApplicationHelper
 
+		def show
+			@profile = current_user
+		end
+
 		def verify_user
 			begin
 				user = User.find_by(id: params[:id])
@@ -20,10 +24,6 @@ module Api::V1
 			rescue error
 				render_error error.message, 422
 			end
-		end
-		
-		def user_profile
-			@profile = current_user
 		end
 
 		private
