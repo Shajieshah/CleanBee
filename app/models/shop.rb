@@ -1,6 +1,6 @@
 class Shop < ApplicationRecord
 
-	belongs_to :user, foreign_key: :vendor_id
+	# belongs_to :vendor
 
 	# Shop capabilities through join table
 	has_many :shop_capabilities, dependent: :destroy
