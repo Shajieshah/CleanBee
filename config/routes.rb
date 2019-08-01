@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
 
+
 	root to: 'application#home'
 	
 	# web version for vendor
-	resources :vendor do
+	devise_for :vendors, controllers: {
+		sessions: 'vendors/sessions'
+	}
+	resources :vendors do
 		resources :shop
 	end
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+	devise_for :admin_users, ActiveAdmin::Devise.config
+	ActiveAdmin.routes(self)
 
 	mount_devise_token_auth_for 'User', at: 'auth'
 
@@ -17,7 +21,7 @@ Rails.application.routes.draw do
 			resources :users do
 				member do
 					post 'verify_user'
-			  end
+				end
 			end
 		end
 	end
