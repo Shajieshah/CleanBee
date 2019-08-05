@@ -23,17 +23,22 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+
       resources :users do
         member do
           post 'verify_user'
         end
       end
+
       resources :orders
+      resources :laundries, only: [:index]
+
       resources :shops, only: [:show, :index] do
         collection do
           get 'search_shops'
         end
       end
+
     end
   end
 end
