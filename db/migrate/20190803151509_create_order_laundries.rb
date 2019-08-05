@@ -4,6 +4,7 @@ class CreateOrderLaundries < ActiveRecord::Migration[5.2]
         t.integer :order_id
         t.integer :laundry_id
         t.float :cost
+        t.string :notes
 
         t.timestamps
       end

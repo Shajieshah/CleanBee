@@ -6,15 +6,20 @@ class Api::V1::OrdersController < ApplicationController
     @order = Order.find_by(id: params[:id])
   end
 
+
+  def index
+    @orders = @current_user.orders.where(status: "pending").joins(:laundries)
+  end
+
   def create
     begin
       @order = @current_user.orders.new order_params
       @order.shop_id = params[:order][:shop_id]
       if @order.save!
         @order_cost = 0
-        params[:laundries].each do |laundry_hash|
+        params[:order][:laundries].each do |laundry_hash|
           laundry = Laundry.find_by(id: laundry_hash[:id])
-          @order.order_laundries.create(laundry_id: laundry.id, cost: laundry_hash[:cost])
+          @order.order_laundries.create(laundry_id: laundry.id, cost: laundry_hash[:cost], notes: laundry_hash[:notes])
           @order_cost = @order_cost + laundry_hash[:cost]
           laundry_hash[:capabilities].each do |capability|
             capability = Capability.find_by(id: capability[:id])
@@ -27,6 +32,17 @@ class Api::V1::OrdersController < ApplicationController
     rescue => error
       render_error error.message, 200
     end
+  end
+
+  def update
+    begin
+      @order = Order.find_by_id params[:id]
+      if @order.update(order_params)
+        render_success "Order update successfully", 200
+      end
+    rescue => error
+      render_error error.message, 200
+    end
 
   end
 
@@ -34,8 +50,8 @@ class Api::V1::OrdersController < ApplicationController
   private
 
   def order_params
-    params.fetch(:orders, {}).permit(:shop_id, :order_type, :pick_location, :pickup_time,
-                                     :pickup_date, :delivery_time, :delivery_date, :laundries)
+    params.fetch(:order, {}).permit(:shop_id, :order_type, :pick_location, :pickup_time,
+                                     :pickup_date, :delivery_time, :delivery_date, :laundries, :status)
   end
 
 end

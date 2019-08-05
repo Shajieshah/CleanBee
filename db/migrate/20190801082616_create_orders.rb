@@ -10,7 +10,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :pickup_date
       t.string :delivery_time
       t.string :delivery_date
-      t.string :status
+      t.string :status, default: "pending"
       t.float :cost
 
       t.timestamps
