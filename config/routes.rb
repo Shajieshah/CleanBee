@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
 
 
-	root to: 'application#home'
+	root to: 'vendors#dashboard'
 	
 	# web version for vendor
 	devise_for :vendors, controllers: {
-		sessions: 'vendors/sessions'
+		sessions: 'vendors/sessions',
+		registrations: 'vendors/registrations',
+		passwords: 'vendors/passwords'
 	}
 	resources :vendors do
+		collection do
+			get 'dashboard'
+		end
 		resources :shop
 	end
 
@@ -21,6 +26,11 @@ Rails.application.routes.draw do
 			resources :users do
 				member do
 					post 'verify_user'
+				end
+			end
+			resources :shop , only: [:show, :index] do
+				collection do
+					get 'search_shops'
 				end
 			end
 		end
