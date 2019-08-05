@@ -3,10 +3,12 @@
 class User < ActiveRecord::Base
  
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
   has_one :shop, foreign_key: :vendor_id, dependent: :destroy
+  has_many :orders
+
   validates :email, :phone, uniqueness: true
   
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"

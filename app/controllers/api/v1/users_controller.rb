@@ -14,13 +14,13 @@ module Api::V1
 				user = User.find_by(id: params[:id])
 				if params[:phone_verified].present?
 					if user.phone_verified?
-						render_error "User's phone is already verified", 422
+						render_error "User's phone is already verified", 200
 					else
 						user.phone_verified = params[:phone_verified]
 						render_success "User's Phone verified successfully", 200 if user.save!
 					end
 				else
-					render_error 'Missing Required Parameters', 400
+					render_error 'Missing Required Parameters', 200
 				end
 			rescue error
 				render_error error.message, 422

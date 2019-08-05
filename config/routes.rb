@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
 	root to: 'application#home'
 	
 	# web version for vendor
@@ -22,7 +21,8 @@ Rails.application.routes.draw do
 				member do
 					post 'verify_user'
 				end
-			end
+      end
+      resources :orders
 		end
 	end
 
