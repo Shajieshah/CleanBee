@@ -8,8 +8,8 @@ class CreateShops < ActiveRecord::Migration[5.2]
     	t.string :timings
     	t.float :latitude
       t.float :longitude
+      t.string :address
       t.attachment :image
-      t.boolean :active, default: false
       t.boolean :online, default: false
 
       t.timestamps

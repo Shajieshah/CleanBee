@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     collection do
       get 'dashboard'
     end
-    resources :shop
+    resources :shops
   end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
