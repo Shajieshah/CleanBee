@@ -4,6 +4,7 @@ if !@shops.nil?
 
 	json.shops @shops.each do |record|
 		
+		json.id record.shop.id
 		json.name record.shop.name
 		json.description record.shop.description
 		json.rating 4.2

@@ -2,6 +2,7 @@ if !@shop.nil?
 	json.success true
 	json.message "success"
 	json.shop do
+		json.id @shop.id
 		json.name @shop.name
 		json.description @shop.description
 		json.timings @shop.timings
