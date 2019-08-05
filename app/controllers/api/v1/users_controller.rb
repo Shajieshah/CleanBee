@@ -1,9 +1,9 @@
 module Api::V1
-	class UsersController < ApiController
+	class UsersController < ApplicationController
 
 		# before_action :authenticate_user!
 		before_action :verify_user_logged_in?
-		include ApplicationHelper
+		include DeviseTokenAuth::Concerns::SetUserByToken
 
 		def show
 			@profile = current_user
