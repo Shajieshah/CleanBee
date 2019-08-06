@@ -10,10 +10,10 @@ Rails.application.routes.draw do
       passwords: 'vendors/passwords'
   }
   resources :vendors do
+    resources :shops
     collection do
       get 'dashboard'
     end
-    resources :shops
   end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -25,6 +25,11 @@ Rails.application.routes.draw do
     namespace :v1 do
 
       resources :users do
+        collection do
+          get 'get_favourite_shops'
+          post 'add_shop_to_favourite'
+          delete 'remove_shop_from_favourite'
+        end
         member do
           post 'verify_user'
         end

@@ -6,12 +6,14 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_one :shop, foreign_key: :vendor_id, dependent: :destroy
   has_many :orders
+
+  # Favourite Shops
+  has_many :favourite_shops, dependent: :destroy
 
   validates :email, :phone, uniqueness: true
   
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   scope :email_or_phone_exist?, ->(email, phone) { where("email = ? OR  phone = ? ", email, phone) }
