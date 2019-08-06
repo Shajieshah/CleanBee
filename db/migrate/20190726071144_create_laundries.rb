@@ -4,7 +4,6 @@ class CreateLaundries < ActiveRecord::Migration[5.2]
     	t.string :name
       t.float :delivery_cost
       t.float :cost
-      t.string :notes
       t.timestamps
     end
   end

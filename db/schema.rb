@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 2019_08_05_123840) do
     t.string "name"
     t.float "delivery_cost"
     t.float "cost"
-    t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -60,6 +59,7 @@ ActiveRecord::Schema.define(version: 2019_08_05_123840) do
     t.integer "order_id"
     t.integer "laundry_id"
     t.float "cost"
+    t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2019_08_05_123840) do
     t.string "pickup_date"
     t.string "delivery_time"
     t.string "delivery_date"
-    t.string "status"
+    t.string "status", default: "pending"
     t.float "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

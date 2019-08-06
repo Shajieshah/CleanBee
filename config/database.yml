@@ -4,15 +4,6 @@ development:
   pool: 5
   port: 5432
 
+
 production:
-  adapter: postgresql
-  url: postgres://fdkofxwitutqab:1729ba12fbc5ca0d426da7f96ef4558403fd8e3cea14ea0b48e2ff009a2d2ffd@ec2-174-129-227-80.compute-1.amazonaws.com:5432/ded7rqovvrj7nc
-# production:
-#   host: 
-#   username: 
-#   password: 
-#   database: 
-#   adapter: postgresql
-#   encoding: unicode
-#   pool: 5
-#   port: 5432
+  url: <%= ENV['DATABASE_URL'] %>
