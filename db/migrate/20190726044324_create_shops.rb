@@ -10,6 +10,7 @@ class CreateShops < ActiveRecord::Migration[5.2]
       t.float :longitude
       t.string :address
       t.attachment :image
+      t.boolean :approved, default: false
       t.boolean :online, default: false
 
       t.timestamps
