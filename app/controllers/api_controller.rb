@@ -9,6 +9,13 @@ class ApiController < ActionController::Base
 		}, status: 401 and return unless user_signed_in?
 	end
 
+	def render_success(message, status)
+		render json: {
+				success: true,
+				message: message
+		}, status: status
+	end
+
 	def render_success_response(message)
 		render json: {
 			success: true,

@@ -7,6 +7,7 @@ json.laundries @laundries.each do |laundry|
   json.capabilities laundry.capabilities.distinct do |laundry_capability|
     json.id laundry_capability.id
     json.name laundry_capability.name
+    json.price 12.0
   end
 
 end
