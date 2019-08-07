@@ -18,4 +18,11 @@ class ApplicationController < ActionController::Base
 		}, status: status
 	end
 
+	def verify_user_logged_in?
+		render json: {
+				success: false,
+				message: 'You need to sign in or sign up before continuing.'
+		}, status: 200 and return unless user_signed_in?
+	end
+
 end

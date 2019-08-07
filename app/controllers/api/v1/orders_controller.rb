@@ -2,13 +2,21 @@ class Api::V1::OrdersController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :verify_user_logged_in?
 
-  def show
-    @order = Order.find_by(id: params[:id])
-  end
-
 
   def index
-    @orders = @current_user.orders.where(status: "pending").joins(:laundries)
+    if params[:ongoing]
+      @orders = @current_user.orders.where(status: "assigned").joins(:laundries)
+    elsif param[:scheduled]
+      @orders = @current_user.orders.where(status: "pending").joins(:laundries)
+    elsif params[:history]
+      @orders = @current_user.orders.where(status: "completed").joins(:laundries)
+    else
+      @orders = @current_user.orders.where(status: "pending").joins(:laundries)
+    end
+  end
+
+  def show
+    @order = Order.find_by(id: params[:id])
   end
 
   def create
@@ -51,7 +59,7 @@ class Api::V1::OrdersController < ApplicationController
 
   def order_params
     params.fetch(:order, {}).permit(:shop_id, :order_type, :pick_location, :pickup_time,
-                                     :pickup_date, :delivery_time, :delivery_date, :laundries, :status)
+                                    :pickup_date, :delivery_time, :delivery_date, :laundries, :status)
   end
 
 end
