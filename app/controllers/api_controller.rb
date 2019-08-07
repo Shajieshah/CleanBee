@@ -30,4 +30,11 @@ class ApiController < ActionController::Base
 		}, status: 422
 	end
 
+	def render_error(message, status)
+		render json: {
+				success: false,
+				message: message
+		}, status: status
+	end
+
 end

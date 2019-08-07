@@ -21,8 +21,8 @@ module Api::V1
 				else
 					render_error 'Missing Required Parameters', 200
 				end
-			rescue error
-				render_error error.message, 422
+			rescue => error
+				bad_request_error error.message
 			end
 		end
 
