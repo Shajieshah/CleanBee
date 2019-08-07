@@ -9,4 +9,32 @@ class ApiController < ActionController::Base
 		}, status: 401 and return unless user_signed_in?
 	end
 
+	def render_success_response(message)
+		render json: {
+			success: true,
+			message: message
+			}, status: 200
+	end
+
+	def missing_params
+		render json: {
+			success: false,
+			message: 'Request missing required parameters'
+		}, status: 400
+	end
+
+	def bad_request_error(message)
+		render json: {
+			success: false,
+			message: message
+		}, status: 422
+	end
+
+	def render_error(message, status)
+		render json: {
+				success: false,
+				message: message
+		}, status: status
+	end
+
 end

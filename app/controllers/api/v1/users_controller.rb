@@ -21,8 +21,31 @@ module Api::V1
 				else
 					render_error 'Missing Required Parameters', 200
 				end
-			rescue error
-				render_error error.message, 422
+			rescue => error
+				bad_request_error error.message
+			end
+		end
+
+		def get_favourite_shops
+			@shops = current_user.favourite_shops
+		end
+
+		def add_shop_to_favourite
+			begin
+				already_exist = FavouriteShop.where(user_id: current_user.id, shop_id: params[:shop_id]).first
+				FavouriteShop.create(user_id: current_user.id, shop_id: params[:shop_id]) unless already_exist
+				render_success_response 'shop added to favourite list'
+			rescue => error
+				bad_request_error error.message
+			end
+		end
+
+		def remove_shop_from_favourite
+			begin
+				favourite_shop = FavouriteShop.where(user_id: current_user.id, shop_id: params[:shop_id]).first
+				render_success_response 'shop removed from favourite list' if favourite_shop.destroy
+			rescue => error
+				bad_request_error error.message
 			end
 		end
 
@@ -30,7 +53,7 @@ module Api::V1
 
 		def user_params
 			params.require(:user).permit(:email, :user_name, :phone, :image, :role, :address,
-                                   :ride, :latitude, :longitude )
+																	 :ride, :latitude, :longitude )
 		end
 		
 	end

@@ -1,12 +1,7 @@
 module Api::V1
-	class ShopsController < ApplicationController
+	class ShopsController < ApiController
 
-		include ShopHelper
-		include DeviseTokenAuth::Concerns::SetUserByToken
 		before_action :verify_user_logged_in?
-
-		def index
-		end
 
 		def show
 			@shop = Shop.find_by(id: params[:id])
