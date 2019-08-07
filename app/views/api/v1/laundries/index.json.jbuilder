@@ -4,10 +4,10 @@ json.laundries @laundries.each do |laundry|
   json.id laundry.id
   json.name laundry.name
 
-  json.capabilities laundry.capabilities.distinct do |laundry_capability|
-    json.id laundry_capability.id
-    json.name laundry_capability.name
-    json.service_charges 12.0
+  json.capabilities laundry.shop_services do |shop_service|
+    json.id shop_service.capability_id
+    json.name shop_service.capability.name
+    json.service_charges shop_service.cost
   end
 
 end
