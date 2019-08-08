@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       registrations: 'vendors/registrations',
       passwords: 'vendors/passwords'
   }
-  resources :vendors do
+  resources :vendors, except: [:destroy] do
     resources :shops
     collection do
       get 'dashboard'

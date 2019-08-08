@@ -5,7 +5,6 @@ class Laundry < ApplicationRecord
 	has_many :shop_services, dependent: :destroy
 	has_many :capabilities, through: :shop_services
 	
-
   has_many :services
 
   has_many :order_laundries
