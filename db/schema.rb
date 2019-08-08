@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(version: 2019_08_08_053046) do
     t.float "latitude"
     t.float "longitude"
     t.string "address"
+    t.float "rating", default: 5.0
     t.string "image_file_name"
     t.string "image_content_type"
     t.integer "image_file_size"

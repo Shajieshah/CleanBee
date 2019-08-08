@@ -23,18 +23,14 @@ module Api::V1
 
     def add_shop_to_favourite
       begin
-        already_exist = FavouriteShop.where(user_id: current_user.id, shop_id: params[:shop_id]).first
-        FavouriteShop.create(user_id: current_user.id, shop_id: params[:shop_id]) unless already_exist
-        render_success_response 'shop added to favourite list'
-      rescue => error
-        bad_request_error error.message
-      end
-    end
-
-    def remove_shop_from_favourite
-      begin
-        favourite_shop = FavouriteShop.where(user_id: current_user.id, shop_id: params[:shop_id]).first
-        render_success_response 'shop removed from favourite list' if favourite_shop.destroy
+        if params[:favourite] == "true"
+          FavouriteShop.create(user_id: current_user.id, shop_id: params[:shop_id])
+          render_success_response 'shop added to favourite list'
+        else
+          favourite_shop = FavouriteShop.where(user_id: current_user.id, shop_id: params[:shop_id]).first
+          favourite_shop.destroy!
+          render_success_response 'shop removed favourite list'
+        end
       rescue => error
         bad_request_error error.message
       end
