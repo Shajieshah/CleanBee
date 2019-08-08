@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   devise_for :vendors, controllers: {
       sessions: 'vendors/sessions',
       registrations: 'vendors/registrations',
-      passwords: 'vendors/passwords'
+      passwords: 'vendors/passwords',
+      confirmations: 'vendors/confirmations'
   }
   resources :vendors, except: [:destroy] do
     resources :shops

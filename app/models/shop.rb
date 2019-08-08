@@ -12,8 +12,5 @@ class Shop < ApplicationRecord
 	has_many :capabilities, through: :laundries_capabilities
 
 	has_many :orders
-
-	# Shop Service Charges
-	has_many :shop_service_charges, dependent: :destroy
 	
 end
