@@ -11,6 +11,7 @@ class CreateShops < ActiveRecord::Migration[5.2]
       t.string :address
       t.float :rating, default: 5.0
       t.attachment :image
+      t.boolean :approved, default: false
       t.boolean :online, default: false
 
       t.timestamps

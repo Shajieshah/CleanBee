@@ -14,8 +14,8 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Registered Shops" do
           ul do
-            Shop.where(active: false).order("created_at desc").limit(10).map do |shop|
-              li link_to(shop.name, admin_shop_path(shop))
+            Shop.where(approved: false).order("created_at desc").limit(10).map do |shop|
+              li link_to(shop.name, admin_shops_path(shop))
             end
           end
         end

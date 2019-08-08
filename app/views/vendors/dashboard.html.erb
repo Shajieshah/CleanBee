@@ -1,0 +1,198 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('[data-toggle="offcanvas"]').click(function(){
+			$("#navigation").toggleClass("hidden-xs");
+		});
+	});
+</script>
+
+
+<style type="text/css">
+	.dropdown-container {
+		display: none;
+		/*background-color: #262626;*/
+		/*padding-left: 8px;*/
+	}
+</style>
+
+<div class="home">
+	<div class="container-fluid display-table" style="padding-left: 0;">
+		<div class="row display-table-row">
+			<div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box sidenav" id="navigation">
+				<div class="logo">
+					<%= image_tag 'logo.png', style: 'width: 60%', alt: 'logo', class: 'hidden-xs hidden-sm' %>
+				</div>
+				<div class="navi">
+					<ul>
+						<li class="active"><a style="text-decoration: none;" href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Dashboard</span></a></li>
+						<li><a class="dropdown-btn" style="text-decoration: none;" href="#"><i class="fa fa-tasks" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Profile</span></a>
+							<div class="dropdown-container">
+								<a href="businessprofile.html" style="text-decoration: none; padding-left: 40px;">Business Profile</a>
+								<a href="#" style="text-decoration: none; padding-left: 40px;">Shop Profile</a>
+							</div>
+						</li>
+						<li><a style="text-decoration: none;" href="orders.html"><i class="fa fa-user" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Orders</span></a></li>
+						<li><a style="text-decoration: none;" href="#"><i class="fa fa-calendar" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Users</span></a></li>
+						<li><a style="text-decoration: none;" href="chat.html"><i class="fa fa-cog" aria-hidden="true"></i><span class="hidden-xs hidden-sm">Chat</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-10 col-sm-11 display-table-cell v-align" style="background-color: #F5F5F5;height: 665px">
+				<!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+				<div class="row">
+					
+					<header>
+						<!-- <div class="col-sm-5">
+						</div> -->
+						<div class="col-sm-12">
+							<div class="header-rightside">
+								<ul class="list-inline header-top pull-right d-flex">
+									
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+											<i class="fa fa-bell" aria-hidden="true"></i>
+										</a>
+										<div class="dropdown-menu">
+											<span class="dropdown-item">Order delivered Notification</span>
+											<span class="dropdown-item">New incoming Order</span>
+											<span class="dropdown-item">Order status is in progress</span>
+										</div>
+									</li>
+									
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="images/user.png" alt="user" style="width: 80%;">
+										</a>
+										<ul class="dropdown-menu">
+											<li>
+												<div class="navbar-content">
+													<span><%= current_vendor.user_name || "Rana Alie" %></span>
+													<p class="text-muted small"> <%= current_vendor.email %> </p>
+													<div class="divider">
+													</div>
+													<%= link_to 'Logout', destroy_vendor_session_path, class: 'dropdown-item', method: :delete %>
+												</div>
+											</li>
+										</ul>
+									</li>
+
+								</ul>
+							</div>
+						</div>
+					</header>
+				</div>
+				<!-- cards functions-->
+				<div class="user-dashboard">
+					<div class="row">
+						<div class="col-md-3 col-sm-5 col-xs-12">
+							<div class="card" style="background-color: #6AB0FF; border-radius: 10px 10px 10px 10px; margin-top: 20px;">
+								<a href="neworders.html" style="text-decoration: none;">
+									<div class="card-header">
+
+									</div>
+									<div class="card-content" style="padding: 10px; width: auto; text-align:center;">
+										<p style="color: white; padding: 0px; margin: 0px;">New Orders</p>
+										<p style="color: white; font-size: 35px; padding: 0px; margin: 0px;">143</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-5 col-xs-12">
+							<div class="card" style="background-color: #70E092; border-radius: 10px 10px 10px 10px; margin-top: 20px;">
+								<a href="neworders.html" style="text-decoration: none;">
+									<div class="card-header">
+									</div>
+									<div class="card-content" style="padding: 10px; width: auto; text-align:center;">
+										<p style="color: white; padding: 0px; margin: 0px;">On Going orders</p>
+										<p style="color: white; font-size: 35px; padding: 0px; margin: 0px;">177</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-5 col-xs-12">
+							<div class="card" style="background-color: #FC9A52; border-radius: 10px 10px 10px 10px; margin-top: 20px;">
+								<a href="neworders.html" style="text-decoration: none;">
+									<div class="card-header">
+
+									</div>
+									<div class="card-content" style="padding: 10px; width: auto; text-align:center;">
+										<p style="color: white; padding: 0px; margin: 0px;">Order History</p>
+										<p style="color: white; font-size: 35px; padding: 0px; margin: 0px;">163</p>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-3 col-sm-5 col-xs-12">
+						</div>
+					</div>
+					<!-- end row-->
+					<div class="row">
+						<div class="col-md-3 col-sm-5 col-xs-12">
+							<div class="card" style="background-color: white; border-radius: 10px 10px 10px 10px; margin-top: 20px;">
+								<a href="#" style="text-decoration: none;">
+									<div class="card-header">
+
+									</div>
+									<div class="card-content" style="padding: 10px; width: auto; text-align:center;">
+										<p style="color: #826EC5; padding: 20px; margin: 0px;">Your Shop rating</p>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star"></span>
+										<span class="fa fa-star-o"></span>
+										<span class="fa fa-star-o"></span>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="col-md-2 col-sm-5 col-xs-12">
+							<div class="card" style="background-color: white; border-radius: 10px 10px 10px 10px; margin-top: 20px; width: 70%;">
+								<a href="#" style="text-decoration: none;">
+
+									<div class="card-content" style="padding: 13px; width: auto; text-align:center;">
+										<p style="color: #826EC5; padding: 6px; margin: 0px;">Shop Availability</p>
+										<div class="switch_box box_2">
+											<input type="checkbox" class="switch_2">
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					<!-- end of row-->
+				</div>
+			</div>
+			<!-- end col 10-->
+		</div>
+
+	</div>
+	<!-- end of container-->
+
+</div>
+
+<script>
+	/* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+	var dropdown = document.getElementsByClassName("dropdown-btn");
+	var i;
+
+	for (i = 0; i < dropdown.length; i++) {
+		dropdown[i].addEventListener("click", function() {
+			this.classList.toggle("active");
+			var dropdownContent = this.nextElementSibling;
+			if (dropdownContent.style.display === "block") {
+				dropdownContent.style.display = "none";
+			} else {
+				dropdownContent.style.display = "block";
+			}
+		});
+	}
+</script>

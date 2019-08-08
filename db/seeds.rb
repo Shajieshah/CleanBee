@@ -47,5 +47,5 @@ ShopService.create(shop_id: 3, laundry_id: 6, capability_id: 4, cost: 22.5)
 Vendor.create!(email: 'vendor3@example.com', password: 'password', password_confirmation: 'password')
 Vendor.third.create_shop(name: 'Novatore', description: 'do the stuff with innovation in daily life!', timings: '', latitude: 31.520370, longitude: 74.358749)
 
-Vendor.create!(email: 'vendor4@example.com', password: 'password', password_confirmation: 'password')
+Vendor.create!(email: 'alie.ammaar@gmail.com', password: 'password', password_confirmation: 'password')
 Vendor.fourth.create_shop(name: 'Novatore', description: 'do the stuff with innovation in daily life!', timings: '', latitude: 31.520370, longitude: 74.358749)

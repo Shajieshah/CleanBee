@@ -1,43 +1,43 @@
-<div class="container text-center">
-  <h2>Sign up</h2>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'form-signin'}) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <label>Business Email</label><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+<div class="container">
+  <div class="row p-4">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4 d-flex justify-content-center">
+      <%= image_tag 'logo.png', style: 'width: 30%', alt: 'logo' %>
+    </div>
+    <div class="col-sm-4"></div>
   </div>
 
-  <div class="field">
-    <label>Full Name</label><br />
-    <%= f.text_field :user_name, autofocus: true, autocomplete: "email", class: 'form-control' %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-  </div>
+  <div class="row">
+    <div class="col-sm-4"></div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
-  </div>
+    <div class="col-sm-4 p-4" style="background-color: white; border-radius: 10px 10px 10px 10px;">
+      <center><h3>Register</h3></center>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <div class="form-group">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control mt-4 p-2', style: 'border-radius: 10px 10px 10px 10px; box-shadow: none;', placeholder: 'Business Email', required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :user_name, autofocus: true, autocomplete: "email", class: 'form-control p-2', style: 'border-radius: 10px 10px 10px 10px; margin-top: 10px; box-shadow: none;', placeholder: 'Full name', required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control p-2', style: 'border-radius: 10px 10px 10px 10px; margin-top: 10px; box-shadow: none;', placeholder: 'Password' , required: true%>
+      </div>
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, autocomplete: 'new-password', class: 'form-control p-2', style: 'border-radius: 10px 10px 10px 10px; margin-top: 10px; box-shadow: none;', placeholder: 'Repeat Password', required: true %>
+      </div>
+      <div class="form-group">
+        <%= f.text_field :phone, autofocus: true, autocomplete: "email", class: 'form-control p-2', style: 'border-radius: 10px 10px 10px 10px; margin-top: 10px; box-shadow: none;', placeholder: 'Phone number', required: true %>
+      </div>
+      
+      <%= f.submit 'Proceed', class: 'btn btn-lg btn-block p-2', style: 'border-radius: 10px 10px 10px 10px; background-color: #0af2d3; margin-top: 10px; box-shadow: none;' %>
+      <% end %>
+      <a href="" style="text-decoration: none; color: black;" class="d-flex justify-content-center p-2" disabled>Already have an account?</a>
+      <%= link_to 'Sign in', new_session_path(resource_name), class: 'btn btn-lg btn-block', style: 'border-radius: 10px 10px 10px 10px; background-color: #6832a8; color: white; box-shadow: none;' %>
+      
+    </div>
 
-  <div class="field">
-    <label>Phone number</label><br />
-    <%= f.text_field :phone, autofocus: true, autocomplete: "email", class: 'form-control' %>
-  </div>
-  
-  <br/>
+    <div class="col-sm-4"></div>
 
-  <div class="actions">
-    <%= f.submit "Sign up", class: 'btn btn-primary' %>
   </div>
-  <% end %>
-
-  <%= render "vendors/shared/links" %>
 </div>

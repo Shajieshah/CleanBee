@@ -79,11 +79,13 @@ class Vendors::RegistrationsController < Devise::RegistrationsController
   # end
 
   def sign_up_params
-    params.require(:vendor).permit(:user_name, :address, :phone, :address, :email, :password, :password_confirmation)
+    params.require(:vendor).permit(:user_name, :address, :phone, :address, :email, :password,
+                                   :password_confirmation, shop_attributes: [:id, :name, :description, :timings, :address, :image])
   end
 
   def account_update_params
-    params.require(:vendor).permit(:user_name, :address, :phone, :address, :email, :password, :password_confirmation, :current_password)
+    params.require(:vendor).permit(:user_name, :address, :phone, :address, :email, :password, :password_confirmation, :current_password,
+                                   shop_attributes: [:id, :name, :description, :timings, :address, :image])
   end
 
 end
