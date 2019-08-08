@@ -8,7 +8,7 @@ json.shops @shops.each do |record|
   json.description record.shop.description
   json.rating 4.2
   json.online record.shop.online
-  json.image "https://i.stack.imgur.com/BK4TW.png"
+  json.image "https://media-cdn.tripadvisor.com/media/photo-w/10/f0/6a/bb/photo4jpg.jpg"
   json.favourite false 
 
   json.laundries record.shop.laundries.distinct.each do |laundry|

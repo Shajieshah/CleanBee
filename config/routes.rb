@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
 
-  resources :ratings
   root to: 'vendors#dashboard'
 
   # web version for vendor
@@ -25,6 +24,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
 
+      resources :ratings
       resources :users do
         collection do
           get 'get_favourite_shops'

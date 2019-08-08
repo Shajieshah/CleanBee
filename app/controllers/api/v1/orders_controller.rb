@@ -5,9 +5,9 @@ class Api::V1::OrdersController < ApplicationController
 
   def index
     if params[:ongoing]
-      @orders = @current_user.orders.where(status: "open").joins(:laundries)
-    elsif param[:scheduled]
       @orders = @current_user.orders.where(status: ["assigned", "processing"]).joins(:laundries)
+    elsif params[:scheduled]
+      @orders = @current_user.orders.where(status: "open").joins(:laundries)
     elsif params[:history]
       @orders = @current_user.orders.where(status: "completed").joins(:laundries)
     else
