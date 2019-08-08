@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :ratings
   root to: 'vendors#dashboard'
 
   # web version for vendor

@@ -13,6 +13,8 @@ class Shop < ApplicationRecord
 
 	has_many :orders
 
+	has_many :ratings
+
 	# Shop Service Charges
 	has_many :shop_service_charges, dependent: :destroy
 	

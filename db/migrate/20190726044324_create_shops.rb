@@ -9,6 +9,7 @@ class CreateShops < ActiveRecord::Migration[5.2]
     	t.float :latitude
       t.float :longitude
       t.string :address
+      t.float :rating, default: 5.0
       t.attachment :image
       t.boolean :online, default: false
 
