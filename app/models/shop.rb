@@ -17,5 +17,7 @@ class Shop < ApplicationRecord
 
 	# Shop Service Charges
 	has_many :shop_service_charges, dependent: :destroy
-	
+
+	geocoded_by :latitude => :lat, :longitude => :longitude # ActiveRecord
+
 end

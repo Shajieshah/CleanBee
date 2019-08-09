@@ -3,6 +3,10 @@ class Api::V1::OrdersController < ApplicationController
   before_action :verify_user_logged_in?
 
 
+  def show
+    @order = Order.find_by(id: params[:id])
+  end
+
   def index
     if params[:ongoing]
       @orders = @current_user.orders.where(status: ["assigned", "processing"]).joins(:laundries)
@@ -13,10 +17,6 @@ class Api::V1::OrdersController < ApplicationController
     else
       @orders = @current_user.orders.where(status: "pending").joins(:laundries)
     end
-  end
-
-  def show
-    @order = Order.find_by(id: params[:id])
   end
 
   def create

@@ -35,15 +35,9 @@ Rails.application.routes.draw do
           post 'verify_user'
         end
       end
-
       resources :orders
       resources :laundries, only: [:index]
-
-      resources :shops, only: [:show, :index] do
-        collection do
-          get 'search_shops'
-        end
-      end
+      resources :shops, only: [:show, :index]
 
     end
   end

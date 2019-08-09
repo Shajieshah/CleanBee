@@ -12,6 +12,8 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :delivery_date
       t.string :status, default: "pending"
       t.float :cost
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps
     end
