@@ -10,12 +10,11 @@ Rails.application.routes.draw do
       passwords: 'vendors/passwords',
       confirmations: 'vendors/confirmations'
   }
+
   resources :vendors, except: [:destroy] do
-    resources :shops
-    collection do
-      get 'dashboard'
-    end
+    resources :shops, except: [:new, :destroy]
   end
+  resources :orders, only: [:index]
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -1,0 +1,143 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+<style type="text/css">
+	.dropdown-container {
+		display: none;
+	}
+</style>
+
+<div class="home">
+	<div class="container-fluid display-table" style="padding-left: 0;">
+		<div class="row display-table-row">
+
+			<%= render 'shared/sidebar' %>
+
+			<div class="col-md-10 col-sm-11 display-table-cell v-align" style="background-color: #F5F5F5;height: 665px">
+				<!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+				<%= render 'shared/navbar' %>
+
+				<div class="user-dashboard" style="background-color: white; margin:80px">
+
+					<div class="" style="padding: 20px; padding-top: 10px;">
+
+						<ul class="nav nav-tabs" id="myTab" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="new_order_tab" data-toggle="tab" href="#new_orders" role="tab" aria-controls="new_orders" aria-selected="true">New Orders</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="on_going_tab" data-toggle="tab" href="#on_going" role="tab" aria-controls="on_going" aria-selected="false">On Going Orders</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="completed_order-tab" data-toggle="tab" href="#completed_order" role="tab" aria-controls="completed_order" aria-selected="false">Order History</a>
+							</li>
+						</ul>
+						<div class="tab-content" id="myTabContent">
+							<div class="tab-pane fade show active" id="new_orders" role="tabpanel" aria-labelledby="new_order_tab">
+								<table class="table table-straped">
+									<thead>
+										<tr>
+											<h3>New Orders</h3>
+										</tr>
+										<tr style="color: lightgrey;">
+											<th>Date</th>
+											<th>Order ID</th>
+											<th>Customer</th>
+											<th>Services</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>John</td>
+											<td>Doe</td>
+											<td>john@example.com</td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>Mary</td>
+											<td>Moe</td>
+											<td>mary@example.com</td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="tab-pane fade" id="on_going" role="tabpanel" aria-labelledby="on_going_tab">
+								<table class="table table-straped">
+									<thead>
+										<tr>
+											<h3>On Going Orders</h3>
+										</tr>
+										<tr style="color: lightgrey;">
+											<th>Date</th>
+											<th>Order ID</th>
+											<th>Customer</th>
+											<th>Services</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>John</td>
+											<td>Doe</td>
+											<td>john@example.com</td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>Mary</td>
+											<td>Moe</td>
+											<td>mary@example.com</td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="tab-pane fade" id="completed_order" role="tabpanel" aria-labelledby="completed_order-tab">
+								<table class="table table-straped">
+									<thead>
+										<tr>
+											<br/>
+											<br/>
+											<br/>
+											<!-- <h3>Completed Orders</h3> -->
+										</tr>
+										<tr style="color: lightgrey;">
+											<th>Date</th>
+											<th>Order ID</th>
+											<th>Customer</th>
+											<th>Services</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>John</td>
+											<td>Doe</td>
+											<td>john@example.com</td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>Mary</td>
+											<td>Moe</td>
+											<td>mary@example.com</td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
