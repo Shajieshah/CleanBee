@@ -9,7 +9,7 @@ class Vendor < ApplicationRecord
 
   after_create :create_vendor_shop
 
-  def method_name
+  def create_vendor_shop
   	self.create_shop!	
   end
 

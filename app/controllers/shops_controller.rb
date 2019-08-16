@@ -6,15 +6,17 @@ class ShopsController < ApplicationController
 	end
 
 	def edit
+		@shop = current_vendor.shop
 	end
 
 	def update
+		byebug
 	end
 
 	private
 
 	def shop_params
-		params
+		params.require(:shop).permit(:name, :description, :opening_time, :closing_time, :address, :image)
 	end
 
 end

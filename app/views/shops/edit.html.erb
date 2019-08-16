@@ -1,0 +1,66 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+<style type="text/css">
+  .dropdown-container {
+    display: none;
+  }
+</style>
+
+<div class="home">
+  <div class="container-fluid display-table" style="padding-left: 0;">
+    <div class="row display-table-row">
+
+      <%= render 'shared/sidebar' %>
+
+      <div class="col-md-10 col-sm-11 display-table-cell v-align" style="background-color: #F5F5F5; height: 100%">
+
+        <%= render 'shared/navbar' %>
+        <!-- cards functions-->
+        <div class="user-dashboard" style="margin: 50px;">
+          <div class="row">
+            <div class="col-md-8 col-sm-5 col-xs-12" style="background-color: white;border-radius: 10px; padding: 0px;">
+              <div class="col-sm-12" style="padding: 0px; margin: 0px;">
+                <img src="<%= image_path(current_vendor.shop.image.url) %>" style="width: 100%;height: 100px;">
+              </div>
+              <%= form_for [current_vendor,current_vendor.shop] do |f| %>
+              <div class="form-group col-sm-12" style="padding: 25px;">
+                <%= f.text_field :name, class: 'form-control' %>
+                <%= f.text_area :description, class: 'form-control', style: 'margin-top: 20px;', rows: 5 %> <br/>
+                <div class="row">
+                  <div class="col-sm-6 form-group">
+                    <label>Opening Time</label>
+                    <%= f.time_field :opening_time, value: "%H:%M", min: 'hh:mm:ss', max: 'hh:mm:ss', class: 'form-control' %>
+                  </div>
+                 <div class="col-sm-6">
+                    <label>Closing Time</label>
+                    <%= f.time_field :closing_time, value: "%H:%M", min: 'hh:mm:ss', max: 'hh:mm:ss', class: 'form-control' %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+              <div style="border: 1px solid #E6E6E6; border-radius: 10px; padding: 10px;margin: 25px; margin-left: 20px">
+                <h5>Shop Capabilities</h5>
+
+                <% Capability.all.each do |capability| %>
+                <label>
+                  <%= check_box_tag "shop[capabilities_ids][]", capability.id %>
+                  <%= capability.name %>
+                </label>
+                <% end %>
+                
+              </div>
+
+              <div class="col-sm-7"></div>
+              <div class="col-sm-5">
+                <button type="button" class="btn btn-lg btn-block mt-2" style="border-radius: 10px; background-color: #0af2d3; box-shadow: none; margin-top: 10px; margin-bottom: 20px">Save</button>
+              </div>  
+            </div>  
+            <!-- end of md8-->
+          </div>
+          <!-- end row-->   
+        </div>
+        <!-- user dashboard-->
+      </div>
+    </div>
+  </div>
+</div>

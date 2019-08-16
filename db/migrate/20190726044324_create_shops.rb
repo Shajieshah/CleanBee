@@ -5,7 +5,8 @@ class CreateShops < ActiveRecord::Migration[5.2]
     	t.integer :vendor_id
     	t.string :name
     	t.string :description
-    	t.string :timings
+    	t.time :opening_time
+      t.time :closing_time
     	t.float :latitude
       t.float :longitude
       t.string :address

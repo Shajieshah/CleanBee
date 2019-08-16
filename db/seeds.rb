@@ -7,7 +7,7 @@ end
 	Laundry.create(name: name)
 end
 Vendor.create!(email: 'vendor1@example.com', password: 'password', password_confirmation: 'password')
-Vendor.first.create_shop(name: 'Novatore', description: 'do the stuff with innovation in daily life!', timings: '', latitude: 31.520370, longitude: 74.358749)
+Vendor.first.create_shop(name: 'Novatore', description: 'do the stuff with innovation in daily life!', latitude: 31.520370, longitude: 74.358749)
 
 ShopService.create(shop_id: 1, laundry_id: 1, capability_id: 1, cost: 5)
 ShopService.create(shop_id: 1, laundry_id: 1, capability_id: 2, cost: 7)
@@ -24,7 +24,7 @@ ShopService.create(shop_id: 1, laundry_id: 5, capability_id: 3, cost: 13.5)
 ShopService.create(shop_id: 1, laundry_id: 6, capability_id: 4, cost: 22.5)
 
 Vendor.create!(email: 'vendor2@example.com', password: 'password', password_confirmation: 'password')
-Vendor.second.create_shop(name: 'Novatore', description: 'do the stuff with innovation in daily life!', timings: '', latitude: 31.520370, longitude: 74.358749)
+Vendor.second.create_shop(name: 'Novatore', description: 'do the stuff with innovation in daily life!', latitude: 31.520370, longitude: 74.358749)
 
 ShopService.create(shop_id: 3, laundry_id: 1, capability_id: 1, cost: 5)
 ShopService.create(shop_id: 3, laundry_id: 1, capability_id: 2, cost: 7)
@@ -41,7 +41,7 @@ ShopService.create(shop_id: 3, laundry_id: 5, capability_id: 3, cost: 13.5)
 ShopService.create(shop_id: 3, laundry_id: 6, capability_id: 4, cost: 22.5)
 
 Vendor.create!(email: 'vendor3@example.com', password: 'password', password_confirmation: 'password')
-Vendor.third.create_shop(name: 'Novatore', description: 'do the stuff with innovation in daily life!', timings: '', latitude: 31.520370, longitude: 74.358749)
+Vendor.third.create_shop(name: 'Novatore', description: 'do the stuff with innovation in daily life!', latitude: 31.520370, longitude: 74.358749)
 
 Vendor.create!(email: 'alie.ammaar@gmail.com', password: 'password', password_confirmation: 'password')
-Vendor.fourth.create_shop(name: 'Novatore', description: 'do the stuff with innovation in daily life!', timings: '', latitude: 31.520370, longitude: 74.358749)
+Vendor.fourth.create_shop(name: 'Novatore', description: 'do the stuff with innovation in daily life!', latitude: 31.520370, longitude: 74.358749)

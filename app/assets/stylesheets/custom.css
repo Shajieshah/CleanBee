@@ -1,5 +1,9 @@
 /*Main CSS*/
 
+/*#shop_opening_time, #shop_closing_time {
+  width: 45% !important;
+}
+*/
 .dropdown-menu.show {
   width: 300px !important;
   left: -80px !important;

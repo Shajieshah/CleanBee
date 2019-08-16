@@ -17,7 +17,7 @@
 				</a>
 				<div class="dropdown-container">
 					<%= link_to "Business Profile", edit_vendor_registration_path(current_vendor), style: 'text-decoration: none; padding-left: 40px;' %>
-					<a href="/" style="text-decoration: none; padding-left: 40px;">Shop Profile</a>
+					<%=link_to 'Shop Profile', edit_vendor_shop_path(current_vendor, current_vendor.shop), style: 'text-decoration: none; padding-left: 40px;' %>
 				</div>
 			</li>
 			<li>
