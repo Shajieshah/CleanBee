@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
   has_many :ratings
 
+  has_many :notifications
+
   # Favourite Shops
   has_many :favourite_shops, dependent: :destroy
 

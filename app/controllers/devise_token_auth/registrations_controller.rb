@@ -2,20 +2,16 @@ module DeviseTokenAuth
   class RegistrationsController < DeviseTokenAuth::ApplicationController
     include ErrorMessage
     before_action :set_user_by_token, only: [:destroy, :update]
-    before_action :validate_sign_up_request, only: :create
+    # before_action :validate_sign_up_request, only: :create
     # before_action :validate_account_update_request, only: :update
     # before_action :validate_account_update_params, only: :update
     skip_after_action :update_auth_header, only: [:destroy]
 
     def create
       begin
-        
         @resource = User.new(user_params)
-
         update_header_tokens if @resource.save!
         render :sign_up, status: :created
-        bad_request_error(@resource.errors.full_messages.to_sentence, 200) unless @resource.persisted?
-      
       rescue => error
         bad_request_error(error.message, 200)
       end
@@ -133,12 +129,12 @@ module DeviseTokenAuth
 
     def user_params
       params.require(:user).permit(:email, :user_name, :phone, :password, :password_confirmation,
-                                   :image, :role, :address, :ride, :latitude, :longitude )
+                                   :image, :role, :address, :ride, :latitude, :longitude)
     end
 
     def account_update_params
       params.require(:user).permit(:email, :user_name, :phone, :image, :address,
-                                   :ride, :latitude, :longitude )
+                                   :ride, :latitude, :longitude)
     end
 
     def resource_update_method
