@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 2019_08_15_050906) do
     t.string "delivery_date"
     t.string "status", default: "pending"
     t.float "cost"
+    t.string "pick_lat_lng"
+    t.string "drop_lat_lng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -155,16 +157,16 @@ ActiveRecord::Schema.define(version: 2019_08_15_050906) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
-    t.string "ride"
+    t.string "vehicle_info"
     t.string "role", default: "customer"
     t.boolean "phone_verified", default: false
+    t.boolean "status", default: true
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
   create_table "vendors", force: :cascade do |t|

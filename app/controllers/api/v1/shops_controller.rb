@@ -7,7 +7,7 @@ module Api::V1
 			@shop = Shop.find_by(id: params[:id])
 		end
 
-		def index
+		def search_shops
 			laundry_ids_array = params[:laundry_id].split(',')
 			@shops = ShopService.where(laundry_id: laundry_ids_array)
 		end

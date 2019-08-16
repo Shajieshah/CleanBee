@@ -38,8 +38,11 @@ Rails.application.routes.draw do
       end
       resources :orders
       resources :laundries, only: [:index]
-      resources :shops, only: [:show, :index]
-
+      resources :shops, only: [:show, :index] do
+        collection do
+          get 'search_shops'
+        end
+      end
     end
   end
 end
