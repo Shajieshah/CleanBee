@@ -129,7 +129,7 @@ module DeviseTokenAuth
 
     def user_params
       params.require(:user).permit(:email, :user_name, :phone, :password, :password_confirmation,
-                                   :image, :role, :address, :ride, :latitude, :longitude)
+                                   :image, :role, :address, :vehicle_info, :latitude, :longitude)
     end
 
     def account_update_params
