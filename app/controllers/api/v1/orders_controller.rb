@@ -59,7 +59,7 @@ class Api::V1::OrdersController < ApplicationController
 
   def order_params
     params.fetch(:order, {}).permit(:shop_id, :order_type, :pick_location, :pickup_time,
-                                    :pickup_date, :delivery_time, :delivery_date, :laundries, :status)
+                                    :pickup_date, :pick_lat, :pick_lng, :delivery_time, :delivery_date, :laundries, :status)
   end
 
 end
