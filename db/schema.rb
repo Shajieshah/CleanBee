@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 2019_08_15_050906) do
     t.string "delivery_date"
     t.string "status", default: "pending"
     t.float "cost"
-    t.string "pick_lat_lng"
-    t.string "drop_lat_lng"
+    t.string "pick_lat"
+    t.string "pick_lng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

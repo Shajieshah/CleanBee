@@ -22,7 +22,6 @@ class Api::V1::OrdersController < ApplicationController
   def create
     begin
       @order = @current_user.orders.new order_params
-      @order.shop_id = params[:order][:shop_id]
       if @order.save!
         @order_cost = 0
         params[:order][:laundries].each do |laundry_hash|
