@@ -1,16 +1,24 @@
 module Api::V1
-	class ShopsController < ApiController
+  class ShopsController < ApiController
 
-		before_action :verify_user_logged_in?
+    before_action :verify_user_logged_in?
 
-		def show
-			@shop = Shop.find_by(id: params[:id])
-		end
+    def show
+      @shop = Shop.find_by(id: params[:id])
+    end
 
-		def search_shops
-			laundry_ids_array = params[:laundry_id].split(',')
-			@shops = ShopService.where(laundry_id: laundry_ids_array)
-		end
+    def search_shops
+      if params[:top_rated].present?
+        laundry_ids_array = params[:laundry_id].split(',')
+        @shops = ShopService.where(laundry_id: laundry_ids_array)
+      elsif params[:nearby].present?
 
-	end
+      else
+        laundry_ids_array = params[:laundry_id].split(',')
+        @shops = ShopService.where(laundry_id: laundry_ids_array)
+      end
+
+    end
+
+  end
 end

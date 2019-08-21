@@ -37,6 +37,7 @@ Rails.application.routes.draw do
         end
       end
       resources :orders
+      resources :notifications
       resources :laundries, only: [:index]
       resources :shops, only: [:show, :index] do
         collection do

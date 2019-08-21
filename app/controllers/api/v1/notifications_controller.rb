@@ -1,11 +1,11 @@
-class NotificationsController < InheritedResources::Base
+class Api::V1::NotificationsController < InheritedResources::Base
 
   include DeviseTokenAuth::Concerns::SetUserByToken
   include ErrorMessage
   before_action :verify_user_logged_in?
 
   def index
-    @notifictions = @current_user.notifications
+    @notifications = @current_user.notifications
   end
 
   private
