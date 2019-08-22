@@ -17,7 +17,7 @@ module Api::V1
       end
     end
 
-    def get_favourite_shops
+    def favourite_shops
       @shops = current_user.favourite_shops
     end
 

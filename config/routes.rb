@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       resources :ratings
       resources :users do
         collection do
-          get 'get_favourite_shops'
+          get 'favourite_shops'
           post 'add_shop_to_favourite'
           delete 'remove_shop_from_favourite'
         end
