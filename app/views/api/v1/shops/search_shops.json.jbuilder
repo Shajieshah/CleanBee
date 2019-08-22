@@ -9,7 +9,7 @@ json.shops @shops.each do |record|
   json.rating 4.2
   json.online record.shop.online
   json.image "https://media-cdn.tripadvisor.com/media/photo-w/10/f0/6a/bb/photo4jpg.jpg"
-  json.favourite false
+  json.favourite @fav_shops.include?(record.id)
 
   json.laundries record.shop.laundries.distinct.each do |laundry|
 
@@ -36,7 +36,7 @@ json.data do
     json.rating 4.2
     json.online record.shop.online
     json.image "https://media-cdn.tripadvisor.com/media/photo-w/10/f0/6a/bb/photo4jpg.jpg"
-    json.favourite false
+    json.favourite @fav_shops.include?(record.id)
 
     json.laundries record.shop.laundries.distinct.each do |laundry|
 
