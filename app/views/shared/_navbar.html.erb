@@ -1,0 +1,39 @@
+<div class="row">
+	<header>
+		<div class="col-sm-12">
+			<div class="header-rightside">
+				<ul class="list-inline header-top pull-right d-flex">
+					
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+							<i class="fa fa-bell" aria-hidden="true"></i>
+						</a>
+						<div class="dropdown-menu">
+							<span class="dropdown-item">Order delivered Notification</span>
+							<span class="dropdown-item">New incoming Order</span>
+							<span class="dropdown-item">Order status is in progress</span>
+						</div>
+					</li>
+					
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<%= image_tag 'user.png', style: 'width: 80%;' %>
+						</a>
+						<ul class="dropdown-menu">
+							<li>
+								<div class="navbar-content">
+									<span><%= current_vendor.user_name || "Rana Alie" %></span>
+									<p class="text-muted small"> <%= current_vendor.email %> </p>
+									<div class="divider">
+									</div>
+									<%= link_to 'Logout', destroy_vendor_session_path, class: 'dropdown-item', method: :delete %>
+								</div>
+							</li>
+						</ul>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+	</header>
+</div>

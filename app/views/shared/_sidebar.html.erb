@@ -1,0 +1,43 @@
+<div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box sidenav" id="navigation">
+	<div class="logo">
+		<%= image_tag 'logo.png', style: 'width: 60%', alt: 'logo', class: 'hidden-xs hidden-sm' %>
+	</div>
+	<div class="navi">
+		<ul>
+			<li class="active">
+				<a style="text-decoration: none;" href="/">
+					<i class="fa fa-home" aria-hidden="true"></i>
+					<span class="hidden-xs hidden-sm">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a class="dropdown-btn" style="text-decoration: none;">
+					<i class="fa fa-tasks" aria-hidden="true"></i>
+					<span class="hidden-xs hidden-sm">Profile</span>
+				</a>
+				<div class="dropdown-container">
+					<%= link_to "Business Profile", edit_vendor_registration_path(current_vendor), style: 'text-decoration: none; padding-left: 40px;' %>
+					<%=link_to 'Shop Profile', edit_vendor_shop_path(current_vendor, current_vendor.shop), style: 'text-decoration: none; padding-left: 40px;' %>
+				</div>
+			</li>
+			<li>
+				<a style="text-decoration: none;" href="<%= orders_path %>">
+					<i class="fa fa-user" aria-hidden="true"></i>
+					<span class="hidden-xs hidden-sm">Orders</span>
+				</a>
+			</li>
+			<li>
+				<a style="text-decoration: none;" href="#">
+					<i class="fa fa-calendar" aria-hidden="true"></i>
+					<span class="hidden-xs hidden-sm">Users</span>
+				</a>
+			</li>
+			<li>
+				<a style="text-decoration: none;" href="chat.html">
+					<i class="fa fa-cog" aria-hidden="true"></i>
+					<span class="hidden-xs hidden-sm">Chat</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

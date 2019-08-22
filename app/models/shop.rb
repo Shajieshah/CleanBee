@@ -2,7 +2,7 @@ class Shop < ApplicationRecord
 
 	belongs_to :vendor
 
-	has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/missing.png"
+	has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/dummy.jpg"
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 	# Shop laundries through join table
@@ -19,5 +19,6 @@ class Shop < ApplicationRecord
 	has_many :shop_service_charges, dependent: :destroy
 
 	# geocoded_by :latitude => :latitude, :longitude => :longitude # ActiveRecord
+
 
 end
