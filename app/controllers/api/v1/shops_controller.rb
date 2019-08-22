@@ -16,6 +16,7 @@ module Api::V1
       else
         laundry_ids_array = params[:laundry_id].split(',')
         @shops = ShopService.where(laundry_id: laundry_ids_array)
+        @fav_shops = @current_user.favourite_shops.pluck(:shop_id)
       end
 
     end

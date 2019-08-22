@@ -12,6 +12,7 @@ json.shops @shops.each do |join_record|
   json.address join_record.shop.address
   json.online join_record.shop.online
   json.image join_record.shop.image.present? ? join_record.shop.image.url : nil
+  json.favourite true
 end
 
 
@@ -26,5 +27,7 @@ json.data do
     json.address join_record.shop.address
     json.online join_record.shop.online
     json.image join_record.shop.image.present? ? join_record.shop.image.url : nil
+    json.favourite true
+
   end
 end

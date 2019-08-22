@@ -23,8 +23,8 @@ module Api::V1
 
     def add_shop_to_favourite
       begin
-        if params[:favourite] == "true"
-          FavouriteShop.create(user_id: current_user.id, shop_id: params[:shop_id])
+        if params[:favourite] == "true" or params[:favourite] == true
+          FavouriteShop.create!(user_id: current_user.id, shop_id: params[:shop_id])
           render_success_response 'shop added to favourite list'
         else
           favourite_shop = FavouriteShop.where(user_id: current_user.id, shop_id: params[:shop_id]).first
