@@ -40,11 +40,11 @@ module DeviseTokenAuth
     def destroy
       # remove auth instance variables so that after_action does not run
       user = remove_instance_variable(:@resource) if @resource
-      client_id = remove_instance_variable(:@client_id) if @client_id
+      client_id = request.headers["client"]
       remove_instance_variable(:@token) if @token
 
       if user && client_id && user.tokens[client_id]
-        user.tokens.delete(client_id)
+        user.tokens.delete(request.headers["client"])
         user.save!
 
         yield user if block_given?
@@ -106,7 +106,8 @@ module DeviseTokenAuth
 
     def render_destroy_success
       render json: {
-          success: true
+          success: true,
+          message: "User log out successfully"
       }, status: 200
     end
 
@@ -114,7 +115,7 @@ module DeviseTokenAuth
       render json: {
           success: false,
           status: "Invalid Request"
-      }, status: 200
+      }, status: 400
     end
 
     private

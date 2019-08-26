@@ -8,7 +8,7 @@ class Api::V1::OrdersController < ApplicationController
       if params[:ongoing]
         @orders = @current_user.owned_orders.where(status: ["assigned", "processing"])
       elsif params[:scheduled]
-        @orders = @current_user.owned_orders.where(status: "open")
+        @orders = @current_user.owned_orders.where(status: "pending")
       else
         @orders = @current_user.owned_orders.where(status: "completed")
       end
@@ -29,12 +29,20 @@ class Api::V1::OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find_by(id: params[:id])
+    begin
+      @order = Order.find_by(id: params[:id])
+      if @order.present?
+      else
+        render_error "Order not found", 400
+      end
+    rescue => error
+      render_error error.message, 400
+    end
   end
 
   def create
     begin
-      @order = @current_user.orders.new order_params
+      @order = @current_user.owned_orders.new order_params
       if @order.save!
         @order_cost = 0
         params[:order][:laundries].each do |laundry_hash|

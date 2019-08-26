@@ -4,7 +4,8 @@ json.shop do
   json.id @shop.id
   json.name @shop.name
   json.description @shop.description
-  json.timings @shop.timings
+  json.opening_time @shop.opening_time
+  json.closing_time @shop.closing_time
   json.latitude @shop.latitude
   json.longitude @shop.longitude
   json.address @shop.address
@@ -16,7 +17,8 @@ json.data do
   json.id @shop.id
   json.name @shop.name
   json.description @shop.description
-  json.timings @shop.timings
+  json.opening_time @shop.opening_time
+  json.closing_time @shop.closing_time
   json.latitude @shop.latitude
   json.longitude @shop.longitude
   json.address @shop.address

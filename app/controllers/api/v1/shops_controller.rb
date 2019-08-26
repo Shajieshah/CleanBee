@@ -4,20 +4,31 @@ module Api::V1
     before_action :verify_user_logged_in?
 
     def show
-      @shop = Shop.find_by(id: params[:id])
+      begin
+        @shop = Shop.find_by(id: params[:id])
+        if @shop.present?
+        else
+          render_error "Shop not found", 400
+        end
+      rescue => error
+        render_error error.message, 400
+      end
     end
 
     def search_shops
-      if params[:top_rated].present?
-        laundry_ids_array = params[:laundry_id].split(',')
-        @shops = ShopService.where(laundry_id: laundry_ids_array)
-      elsif params[:nearby].present?
+      begin
+        if params[:top_rated].present?
+          laundry_ids_array = params[:laundry_id].split(',')
+          @shops = ShopService.where(laundry_id: laundry_ids_array)
+        elsif params[:nearby].present?
 
-      else
-        laundry_ids_array = params[:laundry_id].split(',')
-        @shops = ShopService.where(laundry_id: laundry_ids_array)
+        else
+          laundry_ids_array = params[:laundry_id].split(',')
+          @shops = ShopService.where(laundry_id: laundry_ids_array)
+        end
+      rescue => error
+        render_error error.message, 400
       end
-
     end
 
   end
