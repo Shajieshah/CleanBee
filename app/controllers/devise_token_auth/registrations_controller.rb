@@ -37,7 +37,6 @@ module DeviseTokenAuth
 
     def update
       begin
-
         if @resource
           if @resource.send(resource_update_method, account_update_params)
             yield @resource if block_given?
@@ -48,8 +47,7 @@ module DeviseTokenAuth
         else
           bad_request_error("User not found", 200)
         end
-
-      rescue error
+      rescue => error
         bad_request_error error.message, 400
       end
     end
@@ -68,14 +66,12 @@ module DeviseTokenAuth
       params.permit(*params_for_resource(:sign_up))
     end
 
-    # def account_update_params
-    #   params.permit(*params_for_resource(:account_update))
-    # end
-
     protected
 
     def update_header_tokens
-      @client_id, @token = @resource.create_token
+      token = @resource.create_token
+      @client_id =  token
+      @token = token
       @resource.save!
       update_auth_header
     end
@@ -129,12 +125,12 @@ module DeviseTokenAuth
 
     def user_params
       params.require(:user).permit(:email, :user_name, :phone, :password, :password_confirmation,
-                                   :image, :role, :address, :vehicle_info, :latitude, :longitude)
+                                   :image, :role, :address, :ride_name, :latitude, :longitude)
     end
 
     def account_update_params
       params.require(:user).permit(:email, :user_name, :phone, :image, :address,
-                                   :ride, :latitude, :longitude)
+                                   :ride_name, :latitude, :longitude, :status)
     end
 
     def resource_update_method

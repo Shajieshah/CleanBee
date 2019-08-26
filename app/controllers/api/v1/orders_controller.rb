@@ -3,20 +3,33 @@ class Api::V1::OrdersController < ApplicationController
   before_action :verify_user_logged_in?
 
 
-  def show
-    @order = Order.find_by(id: params[:id])
+  def index
+    if current_user.role.eql? "customer"
+      if params[:ongoing]
+        @orders = @current_user.owned_orders.where(status: ["assigned", "processing"])
+      elsif params[:scheduled]
+        @orders = @current_user.owned_orders.where(status: "open")
+      else
+        @orders = @current_user.owned_orders.where(status: "completed")
+      end
+    else
+      # current_user.role.eql? "rider"
+
+      if params[:open]
+        @orders = Order.where(status: "pending").near([current_user.latitude, current_user.longitude], 5)
+      elsif params[:assigned]
+        @orders = @current_user.assigned_orders.where(status: ['assigned', 'picked_up_from_customer',
+                                                               'dropped_to_vendor', 'ready_to_deliver',
+                                                               "picked_up_from_vendor"]).joins(:laundries)
+      else
+        @orders = @current_user.assigned_orders.where(status: "completed").joins(:laundries)
+      end
+    end
+
   end
 
-  def index
-    if params[:ongoing]
-      @orders = @current_user.orders.where(status: ["assigned", "processing"]).joins(:laundries)
-    elsif params[:scheduled]
-      @orders = @current_user.orders.where(status: "open").joins(:laundries)
-    elsif params[:history]
-      @orders = @current_user.orders.where(status: "completed").joins(:laundries)
-    else
-      @orders = @current_user.orders.where(status: "pending").joins(:laundries)
-    end
+  def show
+    @order = Order.find_by(id: params[:id])
   end
 
   def create
@@ -57,8 +70,9 @@ class Api::V1::OrdersController < ApplicationController
   private
 
   def order_params
-    params.fetch(:order, {}).permit(:shop_id, :order_type, :pick_location, :pickup_time,
-                                    :pickup_date, :pick_lat, :pick_lng, :delivery_time, :delivery_date, :laundries, :status)
+    params.fetch(:order, {}).permit(:shop_id, :owner_id, :assignee_id, :order_type, :pick_location, :pickup_time,
+                                    :pickup_date, :pick_lat, :pick_lng, :delivery_time, :delivery_date,
+                                    :laundries, :status)
   end
 
 end

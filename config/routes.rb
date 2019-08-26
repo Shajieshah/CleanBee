@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-
-  resources :notifications
   root to: 'vendors#dashboard'
 
   # web version for vendor
@@ -44,6 +42,7 @@ Rails.application.routes.draw do
           get 'search_shops'
         end
       end
+      resources :reported_orders
     end
   end
 end

@@ -31,10 +31,10 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration[5.2]
       t.string :address
       t.float :latitude
       t.float :longitude
-      t.string :vehicle_info
+      t.string :ride_name
       t.string :role, default: "customer"
       t.boolean :phone_verified, default: false
-      t.boolean :status, default: true
+      t.boolean :status, default: false
 
       ## Tokens
       t.json :tokens

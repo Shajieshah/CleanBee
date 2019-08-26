@@ -13,6 +13,8 @@ json.orders @orders do |order|
   json.cost order.cost
   json.pick_lat order.pick_lat
   json.pick_lng order.pick_lng
+  json.shop_lat order.shop_lat
+  json.shop_lng order.shop_lng
 
   json.laundries order.order_laundries do |order_laundry|
     json.id order_laundry.laundry_id
@@ -40,6 +42,8 @@ json.data do
     json.cost order.cost
     json.cost order.pick_lat
     json.cost order.pick_lng
+    json.shop_lat order.shop_lat
+    json.shop_lng order.shop_lng
 
     json.laundries order.order_laundries do |order_laundry|
       json.id order_laundry.laundry_id

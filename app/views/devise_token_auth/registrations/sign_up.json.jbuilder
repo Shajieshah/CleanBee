@@ -11,7 +11,8 @@ json.user do
   json.address @resource.address
   json.latitude @resource.latitude
   json.longitude @resource.longitude
-  json.ride @resource.vehicle_info
+  json.ride_name @resource.ride_name
+  json.status @resource.status
   json.phone_verified @resource.phone_verified
   json.profile_image @resource.image.present? ? @resource.image.url : nil
 
@@ -27,7 +28,8 @@ json.data do
   json.address @resource.address
   json.latitude @resource.latitude
   json.longitude @resource.longitude
-  json.ride @resource.vehicle_info
+  json.ride_name @resource.ride_name
+  json.status @resource.status
   json.phone_verified @resource.phone_verified
   json.profile_image @resource.image.present? ? @resource.image.url : nil
 

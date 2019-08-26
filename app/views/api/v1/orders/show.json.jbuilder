@@ -12,6 +12,8 @@ json.order do
   json.delivery_date @order.delivery_date
   json.status @order.status
   json.cost @order.cost
+  json.shop_lat @order.shop_lat
+  json.shop_lng @order.shop_lng
 
   json.laundries @order.order_laundries do |order_laundry|
     json.id order_laundry.laundry_id
@@ -36,6 +38,9 @@ json.data do
   json.delivery_date @order.delivery_date
   json.status @order.status
   json.cost @order.cost
+  json.cost @order.cost
+  json.shop_lat @order.shop_lat
+  json.shop_lng @order.shop_lng
 
   json.laundries @order.order_laundries do |order_laundry|
     json.id order_laundry.laundry_id

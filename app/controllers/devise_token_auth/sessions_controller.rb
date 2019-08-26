@@ -20,19 +20,18 @@ module DeviseTokenAuth
 
     def create
       begin
-
-        @resource = User.email_or_phone_exist?(params[:user][:login], params[:user][:login]).first
+        @resource = User.email_or_phone_exist?(params[:user][:login]).first
         return bad_request_error("User not found", 200) unless @resource.present?
         if @resource.valid_password? params[:user][:password]
-          @client_id, @token = @resource.create_token
-          @resource.save
-          # @resource.update(fcm: params[:fcm]) if params[:fcm].present?
+          token = @resource.create_token
+          @client_id = token
+          @token = token
+          @resource.save!
           yield @resource if block_given?
           render :log_in, status: :ok
         else
           bad_request_error("Invalid Login Credentials", 200)
         end
-
       rescue => error
         bad_request_error(error.message, 200)
       end

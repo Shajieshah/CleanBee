@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :orders
+  has_many :owned_orders,    class_name: "Order", foreign_key: "owner_id"
+  has_many :assigned_orders, class_name: "Order", foreign_key: "assignee_id"
 
   has_many :ratings
 
@@ -15,12 +16,14 @@ class User < ActiveRecord::Base
   # Favourite Shops
   has_many :favourite_shops, dependent: :destroy
 
+  has_many :reported_orders
+
   validates :email, :phone, uniqueness: true
   
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-  scope :email_or_phone_exist?, ->(email, phone) { where("email = ? OR  phone = ? ", email, phone) }
+  scope :email_or_phone_exist?, ->(login) { where("email = ? OR  phone = ? ", login, login) }
 
   enum role: { customer: 'customer', rider: 'rider' }
 

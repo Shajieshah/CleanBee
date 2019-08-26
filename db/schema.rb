@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_15_050906) do
+ActiveRecord::Schema.define(version: 2019_08_26_052026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,7 +73,8 @@ ActiveRecord::Schema.define(version: 2019_08_15_050906) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "user_id"
+    t.integer "owner_id"
+    t.integer "assignee_id"
     t.integer "shop_id"
     t.string "order_type"
     t.string "pick_location"
@@ -81,10 +82,12 @@ ActiveRecord::Schema.define(version: 2019_08_15_050906) do
     t.string "pickup_date"
     t.string "delivery_time"
     t.string "delivery_date"
-    t.string "status", default: "pending"
+    t.string "status", default: "open"
     t.float "cost"
-    t.string "pick_lat"
-    t.string "pick_lng"
+    t.float "pick_lat"
+    t.float "pick_lng"
+    t.float "shop_lat"
+    t.float "shop_lng"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -94,6 +97,15 @@ ActiveRecord::Schema.define(version: 2019_08_15_050906) do
     t.integer "user_id"
     t.integer "shop_id"
     t.text "review"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reported_orders", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "order_id"
+    t.string "reason"
+    t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -158,10 +170,10 @@ ActiveRecord::Schema.define(version: 2019_08_15_050906) do
     t.string "address"
     t.float "latitude"
     t.float "longitude"
-    t.string "vehicle_info"
+    t.string "ride_name"
     t.string "role", default: "customer"
     t.boolean "phone_verified", default: false
-    t.boolean "status", default: true
+    t.boolean "status", default: false
     t.json "tokens"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
