@@ -11,7 +11,7 @@ json.user do
   json.address @profile.address
   json.latitude @profile.latitude
   json.longitude @profile.longitude
-  json.ride @profile.ride unless @profile.ride.nil?
+  json.ride_name @profile.ride unless @profile.ride.nil?
   json.phone_verified @profile.phone_verified
   # json.confirmed_at @profile.confirmed_at
   json.profile_image @profile.image.present? ? @profile.image.url : nil
@@ -28,7 +28,7 @@ json.data do
   json.address @profile.address
   json.latitude @profile.latitude
   json.longitude @profile.longitude
-  json.ride @profile.ride unless @profile.ride.nil?
+  json.ride_name @profile.ride unless @profile.ride.nil?
   json.phone_verified @profile.phone_verified
   # json.confirmed_at @profile.confirmed_at
   json.profile_image @profile.image.present? ? @profile.image.url : nil
