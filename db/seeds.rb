@@ -77,11 +77,10 @@ ShopService.create(shop_id: 3, laundry_id: 5, capability_id: 3, cost: 13.5)
 ShopService.create(shop_id: 3, laundry_id: 6, capability_id: 4, cost: 22.5)
 
 
-
 puts "Create Orders"
 puts "Orders# 1"
 
-@order = Order.create(owner_id:1, shop_id: Shop.first.id, order_type:"regular", pick_location: "Villaggio Mall, Luxury Extension Doha Qatar, Qatar", pickup_time: "12:12:12",
+@order = Order.create(owner_id: 1, shop_id: Shop.first.id, order_type: "regular", pick_location: "Villaggio Mall, Luxury Extension Doha Qatar, Qatar", pickup_time: "12:12:12",
                       pickup_date: "12-12-12", delivery_time: "12:12:12", delivery_date: "12-12-12",
                       status: "pending", cost: 30, pick_lat: 72.22, pick_lng: 72.12, shop_lat: 12.12, shop_lng: 12.12)
 @laudries = @order.order_laundries.create(order_id: @order.id, laundry_id: 1, cost: 30, notes: "Wash it clearly")
@@ -89,7 +88,7 @@ puts "Orders# 1"
 
 
 puts "Orders# 2"
-@order = Order.create(owner_id:1, assignee_id: 1, shop_id: Shop.first.id, order_type:"regular", pick_location: "Villaggio Mall, Luxury Extension Doha Qatar, Qatar", pickup_time: "12:12:12",
+@order = Order.create(owner_id: 1, assignee_id: 1, shop_id: Shop.first.id, order_type: "regular", pick_location: "Villaggio Mall, Luxury Extension Doha Qatar, Qatar", pickup_time: "12:12:12",
                       pickup_date: "12-12-12", delivery_time: "12:12:12", delivery_date: "12-12-12",
                       status: "assigned", cost: 30, pick_lat: 72.22, pick_lng: 72.12, shop_lat: 12.12, shop_lng: 12.12)
 @laudries = @order.order_laundries.create(order_id: @order.id, laundry_id: 1, cost: 30, notes: "Wash it clearly")
@@ -97,7 +96,7 @@ puts "Orders# 2"
 
 
 puts "Orders# 3"
-@order = Order.create(owner_id:1, shop_id: Shop.first.id, order_type:"regular", pick_location: "Villaggio Mall, Luxury Extension Doha Qatar, Qatar", pickup_time: "12:12:12",
+@order = Order.create(owner_id: 1, shop_id: Shop.first.id, order_type: "regular", pick_location: "Villaggio Mall, Luxury Extension Doha Qatar, Qatar", pickup_time: "12:12:12",
                       pickup_date: "12-12-12", delivery_time: "12:12:12", delivery_date: "12-12-12",
                       status: "picked_up_from_customer", cost: 30, pick_lat: 72.22, pick_lng: 72.12, shop_lat: 12.12, shop_lng: 12.12)
 @laudries = @order.order_laundries.create(order_id: @order.id, laundry_id: 1, cost: 30, notes: "Wash it clearly")
@@ -105,15 +104,14 @@ puts "Orders# 3"
 
 
 puts "Orders# 4"
-@order = Order.create(owner_id:1, shop_id: Shop.first.id, order_type:"regular", pick_location: "Villaggio Mall, Luxury Extension Doha Qatar, Qatar", pickup_time: "12:12:12",
+@order = Order.create(owner_id: 1, shop_id: Shop.first.id, order_type: "regular", pick_location: "Villaggio Mall, Luxury Extension Doha Qatar, Qatar", pickup_time: "12:12:12",
                       pickup_date: "12-12-12", delivery_time: "12:12:12", delivery_date: "12-12-12",
                       status: "completed", cost: 30, pick_lat: 72.22, pick_lng: 72.12, shop_lat: 12.12, shop_lng: 12.12)
 @laudries = @order.order_laundries.create(order_id: @order.id, laundry_id: 1, cost: 30, notes: "Wash it clearly")
 @laudries.laundry.laundry_capabilities.create(capability_id: 1)
 
 
-
 puts "Create Notifications"
-Notification.create(message: "Order completed", title: "Order Completed", user_id: 1)
-Notification.create(message: "Order completed", title: "Order Completed", user_id: 1)
-Notification.create(message: "Order completed", title: "Order Completed", user_id: 1)
+Notification.create(message: "Order completed", title: "Order Completed", user_id: 1, shop_id: Shop.first.id, order_id: 5)
+Notification.create(message: "Order completed", title: "Order Completed", user_id: 1, shop_id: Shop.first.id, order_id: 5)
+Notification.create(message: "Order completed", title: "Order Completed", user_id: 1, shop_id: Shop.first.id, order_id: 5)
