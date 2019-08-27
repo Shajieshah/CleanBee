@@ -1,8 +1,8 @@
 development:
   host: localhost
   username: postgres
-  password: postgres
-  database: clean_bee_dev_db
+  password: CleanBee
+  database: clean_b_rider
   adapter: postgresql
   encoding: unicode
   pool: 5
