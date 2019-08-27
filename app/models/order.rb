@@ -31,6 +31,7 @@ class Order < ApplicationRecord
   )}
 
   reverse_geocoded_by :pick_lat, :pick_lng
+
   scope :completed, -> {where(status: 'completed')}
 
 end
