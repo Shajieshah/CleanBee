@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2019_08_26_052026) do
 
   create_table "notifications", force: :cascade do |t|
     t.integer "user_id"
+    t.integer "order_id"
+    t.integer "shop_id"
     t.string "title"
     t.text "message"
     t.datetime "created_at", null: false
@@ -82,7 +84,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_052026) do
     t.string "pickup_date"
     t.string "delivery_time"
     t.string "delivery_date"
-    t.string "status", default: "open"
+    t.string "status", default: "pending"
     t.float "cost"
     t.float "pick_lat"
     t.float "pick_lng"
