@@ -1,0 +1,54 @@
+.body_style{
+	background-color: #c7c9c8;
+}
+.img_1{
+	width: 40%; height: 120px;
+}
+.dive_style{
+	background-color: white; border-radius: 10px 10px 10px 10px;
+}
+.dive_style h3 h6{
+	font-family: 'Lato regular', sans-serif;
+}
+.aplah_1{
+	border-radius: 10px !important; box-shadow: none !important;
+}
+.alpha{
+	text-decoration: underline; color: black;
+}
+.alpha1{
+	text-decoration: none; color: black;
+}
+.alpha_2{
+	border-radius: 10px 10px 10px 10px !important; background-color: #0af2d3; box-shadow: none;
+	font-family: 'Lato', sans-serif !important;
+}
+.alpha_b1{
+	border-radius: 10px 10px 10px 10px !important; background-color: #0af2d3; box-shadow: none;
+	font-family: 'Lato', sans-serif !important;
+	margin-bottom: 9px;
+}
+.alpha_3{
+	border-radius: 10px 10px 10px 10px !important; background-color: #6832a8; color: white; box-shadow: none;
+	font-family: 'Lato', sans-serif !important;
+}
+input::placeholder {
+	font-family: 'Lato', sans-serif !important;
+}
+.custom_r1{
+	margin-top: -6px;
+}
+.custom_rad{
+	color:#826EC5;
+}
+.custom_rad1{
+	color:#826EC5;
+	margin-left: 44px;
+}
+.custom_p1{
+	font-size: 13px;
+	font-family: 'Lato', sans-serif;
+}
+.Custom_a1{
+	color: #0af2d3;
+}

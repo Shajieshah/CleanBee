@@ -13,7 +13,6 @@
 			<%= render 'shared/sidebar' %>
 
 			<div class="col-md-10 col-sm-11 display-table-cell v-align" style="background-color: #F5F5F5;height: 665px">
-				<!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
 				<%= render 'shared/navbar' %>
 
 				<div class="user-dashboard" style="background-color: white; margin:80px">
@@ -33,111 +32,20 @@
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active" id="new_orders" role="tabpanel" aria-labelledby="new_order_tab">
-								<table class="table table-straped">
-									<thead>
-										<tr>
-											<h3>New Orders</h3>
-										</tr>
-										<tr style="color: lightgrey;">
-											<th>Date</th>
-											<th>Order ID</th>
-											<th>Customer</th>
-											<th>Services</th>
-											<th>Status</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>John</td>
-											<td>Doe</td>
-											<td>john@example.com</td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td>Mary</td>
-											<td>Moe</td>
-											<td>mary@example.com</td>
-											<td></td>
-											<td></td>
-										</tr>
-									</tbody>
-								</table>
+                <%= render 'shared/new_orders' %>
 							</div>
+
 							<div class="tab-pane fade" id="on_going" role="tabpanel" aria-labelledby="on_going_tab">
-								<table class="table table-straped">
-									<thead>
-										<tr>
-											<h3>On Going Orders</h3>
-										</tr>
-										<tr style="color: lightgrey;">
-											<th>Date</th>
-											<th>Order ID</th>
-											<th>Customer</th>
-											<th>Services</th>
-											<th>Status</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>John</td>
-											<td>Doe</td>
-											<td>john@example.com</td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td>Mary</td>
-											<td>Moe</td>
-											<td>mary@example.com</td>
-											<td></td>
-											<td></td>
-										</tr>
-									</tbody>
-								</table>
+                <%= render 'shared/ongoing_orders' %>
 							</div>
-							<div class="tab-pane fade" id="completed_order" role="tabpanel" aria-labelledby="completed_order-tab">
-								<table class="table table-straped">
-									<thead>
-										<tr>
-											<br/>
-											<br/>
-											<br/>
-											<!-- <h3>Completed Orders</h3> -->
-										</tr>
-										<tr style="color: lightgrey;">
-											<th>Date</th>
-											<th>Order ID</th>
-											<th>Customer</th>
-											<th>Services</th>
-											<th>Status</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>John</td>
-											<td>Doe</td>
-											<td>john@example.com</td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td>Mary</td>
-											<td>Moe</td>
-											<td>mary@example.com</td>
-											<td></td>
-											<td></td>
-										</tr>
-									</tbody>
-								</table>
+
+              <div class="tab-pane fade" id="completed_order" role="tabpanel" aria-labelledby="completed_order-tab">
+                <%= render 'shared/completed_orders' %>
 							</div>
 						</div>
-
 					</div>
 				</div>
-
 			</div>
-
 		</div>
 	</div>
 </div>
