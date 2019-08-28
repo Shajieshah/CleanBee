@@ -1,7 +1,7 @@
 development:
   host: localhost
-  username: postgres
-  password: postgres
+  username: shaji
+  password: admin123
   database: clean_bee_dev_db
   adapter: postgresql
   encoding: unicode
