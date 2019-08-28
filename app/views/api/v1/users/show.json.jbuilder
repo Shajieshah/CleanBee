@@ -12,6 +12,7 @@ json.user do
   json.latitude @profile.latitude
   json.longitude @profile.longitude
   json.ride_name @profile.ride_name
+  json.status @resource.status
   json.phone_verified @profile.phone_verified
   json.profile_image @profile.image.present? ? @profile.image.url : nil
 
@@ -28,6 +29,7 @@ json.data do
   json.latitude @profile.latitude
   json.longitude @profile.longitude
   json.ride_name @profile.ride_name
+  json.status @resource.status
   json.phone_verified @profile.phone_verified
   json.profile_image @profile.image.present? ? @profile.image.url : nil
 
