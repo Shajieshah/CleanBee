@@ -9,6 +9,8 @@ class Api::V1::OrdersController < ApplicationController
         @orders = @current_user.owned_orders.where(status: ["assigned", "processing"])
       elsif params[:scheduled]
         @orders = @current_user.owned_orders.where(status: "pending")
+      elsif params[:today]
+        @orders = @current_user.owned_orders.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
       else
         @orders = @current_user.owned_orders.where(status: "completed")
       end
