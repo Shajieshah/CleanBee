@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_052026) do
 
   create_table "capabilities", force: :cascade do |t|
     t.string "name"
+    t.integer "laundry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

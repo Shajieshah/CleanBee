@@ -1,103 +1,220 @@
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>dashboard</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="css/dashboard.css">
+  <link rel="stylesheet" type="text/css" href="css/authentication.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-<style type="text/css">
-  .dropdown-container {
-    display: none;
-  }
-</style>
 
-<div class="home">
-  <div class="container-fluid display-table" style="padding-left: 0;">
-    <div class="row display-table-row">
 
-      <%= render 'shared/sidebar' %>
 
-      <div class="col-md-10 col-sm-11 display-table-cell v-align" style="background-color: #F5F5F5;height: 665px">
-        <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
-        <%= render 'shared/navbar' %>
-        <!-- cards functions-->
-        <div class="user-dashboard">
-          <div class="row">
-            <div class="col-md-3 col-sm-5 col-xs-12">
-              <div class="card" style="background-color: #6AB0FF; border-radius: 10px 10px 10px 10px; margin-top: 20px;">
-                <a href="<%= url_for(action: 'index', controller: 'orders') %>" style="text-decoration: none;">
-                  <div class="card-header"></div>
-                  <div class="card-content" style="padding: 10px; width: auto; text-align:center;">
-                    <p style="color: white; padding: 0px; margin: 0px;">New Orders</p>
-                    <p style="color: white; font-size: 35px; padding: 0px; margin: 0px;"><%= @new_orders || 0 %></p>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-5 col-xs-12">
-              <div class="card" style="background-color: #70E092; border-radius: 10px 10px 10px 10px; margin-top: 20px;">
-                <a href="<%= url_for(action: 'index', controller: 'orders') %>" style="text-decoration: none;">
-                  <div class="card-header">
-                  </div>
-                  <div class="card-content" style="padding: 10px; width: auto; text-align:center;">
-                    <p style="color: white; padding: 0px; margin: 0px;">On Going orders</p>
-                    <p style="color: white; font-size: 35px; padding: 0px; margin: 0px;"><%= @ongoing_orders %></p>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-5 col-xs-12">
-              <div class="card" style="background-color: #FC9A52; border-radius: 10px 10px 10px 10px; margin-top: 20px;">
-                <a href="<%= url_for(action: 'index', controller: 'orders') %>" style="text-decoration: none;">
-                  <div class="card-header">
-                  </div>
-                  <div class="card-content" style="padding: 10px; width: auto; text-align:center;">
-                    <p style="color: white; padding: 0px; margin: 0px;">Order History</p>
-                    <p style="color: white; font-size: 35px; padding: 0px; margin: 0px;"><%= @completed_orders %></p>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-5 col-xs-12">
-            </div>
-          </div>
-          <!-- end row-->
-          <div class="row">
-            <div class="col-md-3 col-sm-5 col-xs-12">
-              <div class="card" style="background-color: white; border-radius: 10px 10px 10px 10px; margin-top: 20px;">
-                <a href="#" style="text-decoration: none;">
-                  <div class="card-header">
 
-                  </div>
-                  <div class="card-content" style="padding: 10px; width: auto; text-align:center;">
-                    <p style="color: #826EC5; padding: 20px; margin: 0px;">Your Shop rating</p>
-                    <% for i in 0..(@current_vendor.shop.rating.to_i - 2) %>
-                      <span class="fa fa-star"></span>
-                    <% end %>
-                    <span class="fa fa-star-o"></span>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div class="col-md-2 col-sm-5 col-xs-12">
-              <div class="card" style="background-color: white; border-radius: 10px 10px 10px 10px; margin-top: 20px; width: 70%;">
-                <a href="#" style="text-decoration: none;">
+  <!------ Include the above in your HEAD tag ---------->
 
-                  <div class="card-content" style="padding: 13px; width: auto; text-align:center;">
-                    <p style="color: #826EC5; padding: 6px; margin: 0px;">Shop Availability</p>
-                    <div class="switch_box box_2">
-                      <input type="checkbox" class="switch_2">
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- end of row-->
-        </div>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+
+
+  <script type="text/javascript">
+      $(document).ready(function(){
+          $('[data-toggle="offcanvas"]').click(function(){
+              $("#navigation").toggleClass("hidden-xs");
+          });
+      });
+  </script>
+</head>
+<body class="home">
+<div class="container-fluid display-table">
+  <div class="row display-table-row">
+    <div class="col-sm-2 hidden-xs display-table-cell v-align box sidenav" id="navigation">
+      <div class="logo">
+        <a hef="home.html"><img src="images/logo.png" alt="merkery_logo"/>
+        </a>
       </div>
-      <!-- end col 10-->
+      <div class="navi">
+        <ul>
+          <li class="active"><a class="custom_a1" href="#"><img src="images/dashboard.png" width="11%"/><span class="hidden-xs hidden-sm">&nbsp;&nbsp; Dashboard</span></a></li>
+          <li class="custom_l1"><a class="dropdown-btn custom_a1" href="#"><img src="images/user1.png" width="11%"><span class="hidden-xs hidden-sm">&nbsp;&nbsp; Profile</span></a>
+            <div class="dropdown-container">
+              <a href="businessprofile.html" class="custom_a2"><img src="images/briefcase.png" width="11%"/><span class="hidden-xs hidden-sm">&nbsp;&nbsp; Business Profile </span></a>
+              <a href="shopprofile.html" class="custom_a2"><img src="images/shopping.png" width="11%"/><span class="hidden-xs hidden-sm">&nbsp;&nbsp; Shop Profile </span></a>
+            </div>
+          </li>
+          <li class="custom_l1"><a class="custom_a1" href="orders.html"><img src="images/archive1.png" width="11%"><span class="hidden-xs hidden-sm">&nbsp;&nbsp; Orders</span></a></li>
+          <li class="custom_l1" style=""><a class="custom_a1" href="chat.html"><img src="images/comment.png" width="11%"><span class="hidden-xs hidden-sm">&nbsp;&nbsp; Chat</span></a></li>
+        </ul>
+      </div>
     </div>
+    <div class="col-sm-10 display-table-cell v-align" style="background-color: #F5F5F5;height: 665px">
 
+      <div class="row">
+        <div class="container-fluid"></div>
+        <header>
+          <div class="col-sm-5">
+            <nav class="navbar-default pull-left">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+              </div>
+            </nav>
+
+          </div>
+          <div class="col-sm-7">
+            <div class="header-rightside">
+              <ul class="list-inline header-top pull-right">
+
+                <li class="dropdown">
+                  <a href="#" class="icon-info dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-bell" aria-hidden="true"></i>
+                    <span class="label label-primary"></span>
+                  </a>
+                  <ul class="list-group dropdown-menu custom_ul1">
+                    <a href=""><li class="list-group-item">First item</li></a>
+                    <a href=""><li class="list-group-item">Second item</li></a>
+                    <a href=""><li class="list-group-item">Third item</li></a>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="images/user.png" alt="user" class="img_1"/>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <div class="navbar-content">
+                        <span>JS Krishna</span>
+                        <p class="text-muted small">
+                          me@jskrishna.com
+                        </p>
+                        <div class="divider">
+                        </div>
+                        <a href="#" class="view btn-sm active">View Profile</a>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <!-- cards functions-->
+      <div class="user-dashboard">
+
+        <div class="row">
+          <div class="col-md-3 col-sm-5 col-xs-12">
+
+
+            <div class="card custom_crd">
+              <a href="#" class="custom_anc">
+                <div class="card-header">
+
+                </div>
+                <div class="card-content custom_ct">
+                  <p class="custom_ct1">New Orders</p>
+                  <p class="custom_ct2">143</p>
+                </div>
+              </a>
+            </div>
+
+          </div>
+
+
+          <div class="col-md-3 col-sm-5 col-xs-12">
+
+
+            <div class="card custom_crd1">
+              <a href="neworders.html" class="custom_anc">
+                <div class="card-header">
+
+                </div>
+                <div class="card-content custom_ct">
+                  <p class="custom_ct1">On Going orders</p>
+                  <p class="custom_ct2">177</p>
+                </div>
+              </a>
+            </div>
+
+          </div>
+
+
+          <div class="col-md-3 col-sm-5 col-xs-12">
+
+
+            <div class="card custom_crd2">
+              <a href="neworders.html" class="custom_anc">
+                <div class="card-header">
+
+                </div>
+                <div class="card-content custom_ct">
+                  <p class="custom_ct1">Order History</p>
+                  <p class="custom_ct2">163</p>
+                </div>
+              </a>
+            </div>
+
+          </div>
+          <div class="col-md-3 col-sm-5 col-xs-12"></div>
+
+        </div>
+        <!-- end row-->
+
+
+        <div class="row">
+          <div class="col-md-3 col-sm-5 col-xs-12">
+            <div class="card custom_crd3">
+              <a href="#" class="custom_anc">
+                <div class="card-header">
+
+                </div>
+                <div class="card-content custom_ct">
+                  <p class="custom_ct4">Your Shop rating</p>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star-o"></span>
+                  <span class="fa fa-star-o"></span>
+                </div>
+              </a>
+            </div>
+
+          </div>
+
+
+          <div class="col-md-2 col-sm-5 col-xs-12">
+
+
+            <div class="card custom_crd4">
+              <a href="#" class="custom_anc">
+
+                <div class="card-content custom_ct">
+                  <p class="custom_ct3">Shop Availability</p>
+                  <div class="switch_box box_2">
+                    <input type="checkbox" class="switch_2">
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+        <!-- end of row-->
+      </div>
+    </div>
+    <!-- end col 10-->
   </div>
-  <!-- end of container-->
 
 </div>
+<!-- end of container-->
+
+
 
 <script>
     /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
@@ -105,7 +222,7 @@
     var i;
 
     for (i = 0; i < dropdown.length; i++) {
-        dropdown[i].addEventListener("click", function () {
+        dropdown[i].addEventListener("click", function() {
             this.classList.toggle("active");
             var dropdownContent = this.nextElementSibling;
             if (dropdownContent.style.display === "block") {
@@ -116,3 +233,6 @@
         });
     }
 </script>
+
+</body>
+</html>

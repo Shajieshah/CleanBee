@@ -1,0 +1,64 @@
+.logo img{
+    width: 60%;
+}
+.custom_a1{
+    text-decoration: none !important;
+}
+.custom_a2{
+    text-decoration: none !important;
+    padding-left: 20px;
+}
+.custom_l1{
+    padding-top: 14px;
+}
+.dropdown-container {
+    display: none;
+}
+.custom_ul1{
+    width: 300px !important; left: -275px !important;
+}
+.img_1{
+    width: 80% !important;
+}
+.custom_crd{
+    background-color: #6AB0FF; border-radius: 10px 10px 10px 10px !important; margin-top: 20px;
+
+}
+.custom_crd1{
+    background-color: #70E092; border-radius: 10px 10px 10px 10px !important; margin-top: 20px;
+
+}
+.custom_crd2{
+    background-color: #FC9A52; border-radius: 10px 10px 10px 10px !important; margin-top: 20px;
+
+}
+
+.custom_crd3{
+    background-color: white; border-radius: 10px 10px 10px 10px !important; margin-top: 20px;
+
+}
+
+.custom_crd4{
+    background-color: white; border-radius: 10px 10px 10px 10px !important; margin-top: 20px;
+    width: 70%;
+
+}
+.custom_anc{
+    text-decoration: none !important;
+}
+.custom_ct{
+    padding: 10px; width: auto; text-align:center;
+}
+.custom_ct1{
+    color: white; padding: 0px; margin: 0px;
+}
+.custom_ct2{
+    color: white; font-size: 35px; padding: 0px; margin: 0px;
+}
+.custom_ct3{
+    color: #826EC5; padding: 6px; margin: 0px;
+}
+.custom_ct4{
+    color: #826EC5; padding: 20px; margin: 0px;
+}
+
