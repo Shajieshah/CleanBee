@@ -17,14 +17,15 @@ module Api::V1
 
     def search_shops
       begin
+        @favourite_shops = @current_user.favourite_shops
         if params[:top_rated].present?
           laundry_ids_array = params[:laundry_id].split(',')
-          @shops = ShopService.where(laundry_id: laundry_ids_array)
+          @shops = ShopService.where(laundry_id: laundry_ids_array).select('distinct on (shop_id) *')
         elsif params[:nearby].present?
 
         else
           laundry_ids_array = params[:laundry_id].split(',')
-          @shops = ShopService.where(laundry_id: laundry_ids_array)
+          @shops = ShopService.where(laundry_id: laundry_ids_array).select('distinct on (shop_id) *')
         end
       rescue => error
         render_error error.message, 400

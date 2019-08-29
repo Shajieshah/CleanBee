@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_052026) do
   create_table "laundry_capabilities", force: :cascade do |t|
     t.integer "laundry_id"
     t.integer "capability_id"
+    t.integer "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -114,17 +115,17 @@ ActiveRecord::Schema.define(version: 2019_08_26_052026) do
 
   create_table "shop_capabilities", force: :cascade do |t|
     t.bigint "capability_id"
-    t.bigint "shops_id"
+    t.bigint "shop_id"
+    t.integer "laundry_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["capability_id"], name: "index_shop_capabilities_on_capability_id"
-    t.index ["shops_id"], name: "index_shop_capabilities_on_shops_id"
+    t.index ["shop_id"], name: "index_shop_capabilities_on_shop_id"
   end
 
   create_table "shop_services", force: :cascade do |t|
     t.integer "shop_id"
     t.integer "laundry_id"
-    t.integer "capability_id"
     t.float "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -204,5 +205,5 @@ ActiveRecord::Schema.define(version: 2019_08_26_052026) do
   end
 
   add_foreign_key "shop_capabilities", "capabilities"
-  add_foreign_key "shop_capabilities", "shops", column: "shops_id"
+  add_foreign_key "shop_capabilities", "shops"
 end

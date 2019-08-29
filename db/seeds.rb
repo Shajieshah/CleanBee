@@ -34,47 +34,25 @@ Vendor.fourth.create_shop(name: 'Lagoona Mall ', description: 'do the stuff with
 
 puts "Create Shop Services"
 
-ShopService.create(shop_id: 1, laundry_id: 1, capability_id: 1, cost: 5)
-ShopService.create(shop_id: 1, laundry_id: 1, capability_id: 2, cost: 7)
-ShopService.create(shop_id: 1, laundry_id: 1, capability_id: 3, cost: 8)
-ShopService.create(shop_id: 1, laundry_id: 1, capability_id: 4, cost: 10)
+ShopService.create(shop_id: Shop.first.id, laundry_id: 1)
+ShopService.create(shop_id: Shop.first.id, laundry_id: 2)
+ShopService.create(shop_id: Shop.first.id, laundry_id: 3)
+ShopService.create(shop_id: Shop.first.id, laundry_id: 4)
 
-ShopService.create(shop_id: 1, laundry_id: 2, capability_id: 1, cost: 8)
-ShopService.create(shop_id: 1, laundry_id: 2, capability_id: 2, cost: 9)
-ShopService.create(shop_id: 1, laundry_id: 2, capability_id: 3, cost: 5.5)
+ShopCapability.create(shop_id: Shop.first.id, laundry_id: 1, capability_id: 1)
+ShopCapability.create(shop_id: Shop.first.id, laundry_id: 1, capability_id: 2)
+ShopCapability.create(shop_id: Shop.first.id, laundry_id: 1, capability_id: 3)
 
-ShopService.create(shop_id: 1, laundry_id: 5, capability_id: 1, cost: 10)
-ShopService.create(shop_id: 1, laundry_id: 5, capability_id: 2, cost: 12)
-ShopService.create(shop_id: 1, laundry_id: 5, capability_id: 3, cost: 13.5)
-ShopService.create(shop_id: 1, laundry_id: 6, capability_id: 4, cost: 22.5)
 
-ShopService.create(shop_id: 2, laundry_id: 1, capability_id: 1, cost: 5)
-ShopService.create(shop_id: 2, laundry_id: 1, capability_id: 2, cost: 7)
-ShopService.create(shop_id: 2, laundry_id: 1, capability_id: 3, cost: 8)
-ShopService.create(shop_id: 2, laundry_id: 1, capability_id: 4, cost: 10)
 
-ShopService.create(shop_id: 2, laundry_id: 2, capability_id: 1, cost: 8)
-ShopService.create(shop_id: 2, laundry_id: 2, capability_id: 2, cost: 9)
-ShopService.create(shop_id: 2, laundry_id: 2, capability_id: 3, cost: 5.5)
+ShopService.create(shop_id: Shop.second.id, laundry_id: 1)
+ShopService.create(shop_id: Shop.second.id, laundry_id: 2)
+ShopService.create(shop_id: Shop.second.id, laundry_id: 3)
+ShopService.create(shop_id: Shop.second.id, laundry_id: 4)
 
-ShopService.create(shop_id: 2, laundry_id: 5, capability_id: 1, cost: 10)
-ShopService.create(shop_id: 2, laundry_id: 5, capability_id: 2, cost: 12)
-ShopService.create(shop_id: 2, laundry_id: 5, capability_id: 3, cost: 13.5)
-ShopService.create(shop_id: 2, laundry_id: 6, capability_id: 4, cost: 22.5)
-
-ShopService.create(shop_id: 3, laundry_id: 1, capability_id: 1, cost: 5)
-ShopService.create(shop_id: 3, laundry_id: 1, capability_id: 2, cost: 7)
-ShopService.create(shop_id: 3, laundry_id: 1, capability_id: 3, cost: 8)
-ShopService.create(shop_id: 3, laundry_id: 1, capability_id: 4, cost: 10)
-
-ShopService.create(shop_id: 3, laundry_id: 2, capability_id: 1, cost: 8)
-ShopService.create(shop_id: 3, laundry_id: 2, capability_id: 2, cost: 9)
-ShopService.create(shop_id: 3, laundry_id: 2, capability_id: 3, cost: 5.5)
-
-ShopService.create(shop_id: 3, laundry_id: 5, capability_id: 1, cost: 10)
-ShopService.create(shop_id: 3, laundry_id: 5, capability_id: 2, cost: 12)
-ShopService.create(shop_id: 3, laundry_id: 5, capability_id: 3, cost: 13.5)
-ShopService.create(shop_id: 3, laundry_id: 6, capability_id: 4, cost: 22.5)
+ShopCapability.create(shop_id: Shop.second.id, laundry_id: 1, capability_id: 1)
+ShopCapability.create(shop_id: Shop.second.id, laundry_id: 1, capability_id: 2)
+ShopCapability.create(shop_id: Shop.second.id, laundry_id: 1, capability_id: 3)
 
 
 puts "Create Orders"

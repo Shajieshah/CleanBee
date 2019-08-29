@@ -44,17 +44,14 @@ class Api::V1::OrdersController < ApplicationController
     begin
       @order = @current_user.owned_orders.new order_params
       if @order.save!
-        @order_cost = 0
         params[:order][:laundries].each do |laundry_hash|
           laundry = Laundry.find_by(id: laundry_hash[:id])
           @order.order_laundries.create(laundry_id: laundry.id, cost: laundry_hash[:cost], notes: laundry_hash[:notes])
-          @order_cost = @order_cost + laundry_hash[:cost]
           laundry_hash[:capabilities].each do |capability|
             capability = Capability.find_by(id: capability[:id])
-            laundry.laundry_capabilities.create(capability_id: capability.id)
+            laundry.laundry_capabilities.create(capability_id: capability.id, order_id: @order.id)
           end
         end
-        @order.update(cost: @order_cost)
       end
       render_success "Order created successfully", 200
     rescue => error
@@ -78,9 +75,9 @@ class Api::V1::OrdersController < ApplicationController
   private
 
   def order_params
-    params.fetch(:order, {}).permit(:shop_id, :owner_id, :assignee_id, :order_type, :pick_location, :pickup_time,
+    params.fetch(:order, {}).permit(:shop_id, :order_type, :pick_location, :pickup_time,
                                     :pickup_date, :pick_lat, :pick_lng, :delivery_time, :delivery_date,
-                                    :laundries, :status, :shop_lat, :shop_lng)
+                                    :laundries, :status, :shop_lat, :shop_lng, :cost)
   end
 
 end
