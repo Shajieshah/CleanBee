@@ -7,7 +7,7 @@ json.laundries @laundries.each do |laundry|
   json.capabilities laundry.capabilities do |capability|
     json.id capability.id
     json.name capability.name
-    json.service_charges capability.cost rescue nil
+    json.service_charges capability.cost rescue 5.0
   end
 
 end
@@ -21,7 +21,7 @@ json.data do
     json.capabilities laundry.capabilities do |capability|
       json.id capability.id
       json.name capability.name
-      json.service_charges capability.cost rescue nil
+      json.service_charges capability.cost rescue 5.0
     end
   end
 end
