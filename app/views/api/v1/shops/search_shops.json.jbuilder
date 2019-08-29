@@ -10,6 +10,8 @@ json.shops @shops.each do |record|
   json.online record.shop.online
   json.image "https://media-cdn.tripadvisor.com/media/photo-w/10/f0/6a/bb/photo4jpg.jpg"
   json.favourite @favourite_shops.pluck(:shop_id).include?(record.shop_id) ? true : false
+  json.shop_lat record.shop.shop_lat
+  json.shop_lng record.shop.shop_lng
 
   json.laundries record.shop.laundries.each do |laundry|
 
@@ -37,6 +39,8 @@ json.data do
     json.online record.shop.online
     json.image "https://media-cdn.tripadvisor.com/media/photo-w/10/f0/6a/bb/photo4jpg.jpg"
     json.favourite false
+    json.shop_lat record.shop.shop_lat
+    json.shop_lng record.shop.shop_lng
 
     json.laundries record.shop.laundries.each do |laundry|
 

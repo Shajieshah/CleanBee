@@ -11,6 +11,8 @@ json.shop do
   json.address @shop.address
   json.online @shop.online
   json.image @shop.image.present? ? @shop.image.url : nil
+  json.shop_lat @shop.shop_lat
+  json.shop_lng @shop.shop_lng
 
   json.laundries @shop.laundries.each do |laundry|
 
@@ -37,6 +39,9 @@ json.data do
   json.address @shop.address
   json.online @shop.online
   json.image @shop.image.present? ? @shop.image.url : nil
+  json.shop_lat @shop.shop_lat
+  json.shop_lng @shop.shop_lng
+
   json.laundries @shop.laundries.each do |laundry|
 
     json.id laundry.id
