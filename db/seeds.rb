@@ -14,7 +14,7 @@ end
 
 puts "Create Capabilities"
 ['Dry Cleaning', 'Washing', 'Ironing', 'Stain Removing'].each do |name|
-  Capability.create(name: name, laundry_id: Laundry.first.id)
+  Capability.create(name: name, laundry_id: Laundry.first.id, cost: 5.0)
 end
 
 
