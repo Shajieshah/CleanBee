@@ -1,0 +1,25 @@
+<table class="table table-straped">
+  <thead>
+  <tr>
+    <h3>New Orders</h3>
+  </tr>
+  <tr style="color: lightgrey;">
+    <th>Date</th>
+    <th>Order ID</th>
+    <th>Customer</th>
+    <th>Services</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% current_vendor.shop.orders.where(status: "pending").each do |order| %>
+    <tr>
+      <td><%= order.created_at %></td>
+      <td><%= order.id %></td>
+      <td><%= order.owner.email %></td>
+      <td></td>
+      <td><%= order.status %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

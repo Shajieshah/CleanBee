@@ -4,7 +4,6 @@ class CreateShopServices < ActiveRecord::Migration[5.2]
 
     	t.integer :shop_id
     	t.integer :laundry_id
-    	t.integer :capability_id
     	t.float :cost
 
       t.timestamps
