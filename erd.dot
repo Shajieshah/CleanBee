@@ -30,6 +30,7 @@ m_Capability [label = <{<table border="0" align="center" cellspacing="0.5" cellp
 </table>
 |
 <table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="cost">cost <font face="Arial Italic" color="grey60">float</font></td></tr>
   <tr><td align="left" width="130" port="name">name <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
 </table>
 }>];
@@ -40,6 +41,18 @@ m_FavouriteShop [label = <{<table border="0" align="center" cellspacing="0.5" ce
 <table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
   <tr><td align="left" width="130" port="shop_id">shop_id <font face="Arial Italic" color="grey60">integer FK</font></td></tr>
   <tr><td align="left" width="130" port="user_id">user_id <font face="Arial Italic" color="grey60">integer FK</font></td></tr>
+</table>
+}>];
+m_Image [label = <{<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Image</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="imageable_content_type">imageable_content_type <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="imageable_id">imageable_id <font face="Arial Italic" color="grey60">integer (8) FK</font></td></tr>
+  <tr><td align="left" width="130" port="imageable_name">imageable_name <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="imageable_size">imageable_size <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="imageable_type">imageable_type <font face="Arial Italic" color="grey60">string</font></td></tr>
 </table>
 }>];
 m_Laundry [label = <{<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
@@ -148,12 +161,21 @@ m_Shop [label = <{<table border="0" align="center" cellspacing="0.5" cellpadding
   <tr><td align="left" width="130" port="vendor_id">vendor_id <font face="Arial Italic" color="grey60">integer FK</font></td></tr>
 </table>
 }>];
+m_ShopCapability [label = <{<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ShopCapability</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="capability_id">capability_id <font face="Arial Italic" color="grey60">integer (8) FK</font></td></tr>
+  <tr><td align="left" width="130" port="shops_id">shops_id <font face="Arial Italic" color="grey60">integer (8)</font></td></tr>
+</table>
+}>];
 m_ShopService [label = <{<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
   <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ShopService</font></td></tr>
 </table>
 |
 <table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
-  <tr><td align="left" width="130" port="capability_id">capability_id <font face="Arial Italic" color="grey60">integer FK</font></td></tr>
+  <tr><td align="left" width="130" port="capability_id">capability_id <font face="Arial Italic" color="grey60">integer</font></td></tr>
   <tr><td align="left" width="130" port="cost">cost <font face="Arial Italic" color="grey60">float</font></td></tr>
   <tr><td align="left" width="130" port="laundry_id">laundry_id <font face="Arial Italic" color="grey60">integer FK</font></td></tr>
   <tr><td align="left" width="130" port="shop_id">shop_id <font face="Arial Italic" color="grey60">integer FK</font></td></tr>
@@ -213,6 +235,8 @@ m_Vendor [label = <{<table border="0" align="center" cellspacing="0.5" cellpaddi
 }>];
   m_User -> m_Order [arrowhead = "normal", arrowtail = "none", weight = "4"];
   m_User -> m_Rating [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Shop -> m_Image [arrowhead = "none", arrowtail = "none", weight = "1"];
+  m_User -> m_Image [arrowhead = "none", arrowtail = "none", weight = "1"];
   m_User -> m_Notification [arrowhead = "normal", arrowtail = "none", weight = "2"];
   m_User -> m_FavouriteShop [arrowhead = "normal", arrowtail = "none", weight = "2"];
   m_User -> m_ReportedOrder [arrowhead = "normal", arrowtail = "none", weight = "2"];
@@ -220,11 +244,14 @@ m_Vendor [label = <{<table border="0" align="center" cellspacing="0.5" cellpaddi
   m_Laundry -> m_ShopService [arrowhead = "normal", arrowtail = "none", weight = "2"];
   m_Laundry -> m_OrderLaundry [arrowhead = "normal", arrowtail = "none", weight = "2"];
   m_Laundry -> m_LaundryCapability [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Laundry -> m_Capability [arrowhead = "normal", arrowtail = "none", weight = "3"];
   m_Capability -> m_LaundryCapability [arrowhead = "normal", arrowtail = "none", weight = "2"];
   m_Shop -> m_ShopService [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Shop -> m_ShopCapability [arrowhead = "normal", arrowtail = "none", weight = "2"];
   m_Shop -> m_Order [arrowhead = "normal", arrowtail = "none", weight = "2"];
   m_Shop -> m_Rating [arrowhead = "normal", arrowtail = "none", weight = "2"];
-  m_Shop -> m_FavouriteShop [arrowhead = "normal", arrowtail = "none", weight = "1"];
   m_Order -> m_OrderLaundry [arrowhead = "normal", arrowtail = "none", weight = "2"];
-  m_Capability -> m_ShopService [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_Order -> m_LaundryCapability [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_Shop -> m_FavouriteShop [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_Capability -> m_ShopCapability [arrowhead = "normal", arrowtail = "none", weight = "1"];
 }

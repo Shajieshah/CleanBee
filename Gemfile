@@ -71,3 +71,5 @@ gem 'arctic_admin'
 gem 'devise'
 gem 'devise_token_auth'
 gem 'paperclip', '~> 6.0.0'
+# gem "refile", require: "refile/rails"
+# gem "refile-mini_magick"

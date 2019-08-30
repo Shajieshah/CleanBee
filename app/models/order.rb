@@ -1,5 +1,16 @@
 class Order < ApplicationRecord
 
+
+  validates :cost,  presence: true
+  validates :delivery_date,  presence: true
+  validates :delivery_time,  presence: true
+  validates :order_type,  presence: true
+  validates :shop_id,  presence: true
+  validates :pick_lat,  presence: true
+  validates :pick_lng,  presence: true
+  validates :shop_lat,  presence: true
+  validates :shop_lng,  presence: true
+
   belongs_to :owner,    class_name: "User", foreign_key: "owner_id"
   belongs_to :assignee, class_name: "User", foreign_key: "assignee_id", optional: true
 

@@ -10,7 +10,10 @@ module DeviseTokenAuth
     def create
       begin
         @resource = User.new(user_params)
+        # debugger
         update_header_tokens if @resource.save!
+        # debugger
+        Image.create(:imageable_name=>user_params[:image].original_filename,:imageable_content_type=>user_params[:image].content_type,:imageable => @resource)
         render :sign_up, status: :created
       rescue => error
         bad_request_error(error.message, 200)
@@ -125,8 +128,14 @@ module DeviseTokenAuth
 
     def user_params
       params.require(:user).permit(:email, :user_name, :phone, :password, :password_confirmation,
-                                   :image, :role, :address, :ride_name, :latitude, :longitude)
+                                  :image,:role, :address, :ride_name, :latitude, :longitude)
     end
+
+    def image_param
+      params.require(:user).permit(:image)
+    end
+
+
 
     def account_update_params
       params.require(:user).permit(:email, :user_name, :phone, :image, :address,

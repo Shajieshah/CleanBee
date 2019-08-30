@@ -65,6 +65,9 @@ class Api::V1::OrdersController < ApplicationController
     begin
       @order = Order.find_by_id params[:id]
       if @order.update(order_params)
+        
+        Notification.create(message: "Order #{@order.status}", title: "Order #{@order.status}", owner_id:@order.owner_id ,assignee_id:@current_user.id, shop_id: @order.shop.id, order_id: @order.id)
+        
         render_success "Order update successfully", 200
       end
     rescue => error
