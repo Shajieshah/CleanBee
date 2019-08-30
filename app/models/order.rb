@@ -13,6 +13,7 @@ class Order < ApplicationRecord
   enum status: {
 
       pending: 'pending',
+      start: 'start',
       ready_to_pickup: 'ready_to_pickup',
       assigned: 'assigned',
       picked_up_from_customer: 'picked_up_from_customer',
