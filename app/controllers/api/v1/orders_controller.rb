@@ -62,8 +62,10 @@ class Api::V1::OrdersController < ApplicationController
   def update
     begin
       @order = Order.find_by_id params[:id]
-      if @order.update(order_params)
-        render_success "Order update successfully", 200
+      if @order.present?
+      @order.update(order_params)
+      @notifications = Notification.create(message: "Order reached", title: "Order Reached",user_id: @current_user.id)
+      render_success "Order update successfully", 200
       end
     rescue => error
       render_error error.message, 200

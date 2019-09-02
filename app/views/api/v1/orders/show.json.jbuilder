@@ -19,8 +19,10 @@ json.order do
     json.id order_laundry.laundry_id
     json.name order_laundry.laundry.name
 
-    json.capabilities order_laundry.laundry.laundry_capabilities.where(order_id: order.id) do |laundry_capability|
-      json.name laundry_capability.capability.name
+    if order_laundry.laundry.laundry_capabilities.where(order_id: @order.id).present?
+      json.capabilities order_laundry.laundry.laundry_capabilities.where(order_id: @order.id) do |laundry_capability|
+        json.name laundry_capability.capability.name
+      end
     end
   end
 
@@ -45,8 +47,10 @@ json.data do
     json.id order_laundry.laundry_id
     json.name order_laundry.laundry.name
 
-    json.capabilities order_laundry.laundry.laundry_capabilities.where(order_id: order.id) do |laundry_capability|
-      json.name laundry_capability.capability.name
+    if order_laundry.laundry.laundry_capabilities.where(order_id: @order.id).present?
+      json.capabilities order_laundry.laundry.laundry_capabilities.where(order_id: @order.id) do |laundry_capability|
+        json.name laundry_capability.capability.name
+      end
     end
   end
 
