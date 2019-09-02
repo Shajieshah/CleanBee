@@ -65,7 +65,7 @@ class Api::V1::OrdersController < ApplicationController
     begin
       @order = Order.find_by_id params[:id]
       if @order.update(order_params)
-        render_success "Order update successfully", 200
+        render_success "Order_status_updated successfully", 200
       end
     rescue => error
       render_error error.message, 200
