@@ -9,18 +9,20 @@ json.shops @shops.each do |record|
   json.rating 4.2
   json.online record.shop.online
   json.image "https://media-cdn.tripadvisor.com/media/photo-w/10/f0/6a/bb/photo4jpg.jpg"
-  json.favourite false
+  json.favourite @favourite_shops.pluck(:shop_id).include?(record.shop_id) ? true : false
+  json.shop_lat record.shop.latitude rescue nil
+  json.shop_lng record.shop.longitude rescue nil
 
-  json.laundries record.shop.laundries.distinct.each do |laundry|
+  json.laundries record.shop.laundries.each do |laundry|
 
     json.id laundry.id
     json.name laundry.name
 
     json.delivery_cost laundry.delivery_cost.present? ? laundry.delivery_cost : 5
-    json.capabilities laundry.capabilities.each do |capability|
+    json.capabilities record.shop.capabilities.each do |capability|
       json.capability_id capability.id
       json.capability capability.name
-      json.service_charges record.cost
+      json.service_charges capability.cost rescue nil
     end
   end
 
@@ -37,20 +39,20 @@ json.data do
     json.online record.shop.online
     json.image "https://media-cdn.tripadvisor.com/media/photo-w/10/f0/6a/bb/photo4jpg.jpg"
     json.favourite false
+    json.shop_lat record.shop.latitude
+    json.shop_lng record.shop.longitude
 
-    json.laundries record.shop.laundries.distinct.each do |laundry|
+    json.laundries record.shop.laundries.each do |laundry|
 
       json.id laundry.id
       json.name laundry.name
 
       json.delivery_cost laundry.delivery_cost.present? ? laundry.delivery_cost : 5
-      json.capabilities laundry.capabilities.each do |capability|
+      json.capabilities record.shop.capabilities.each do |capability|
         json.capability_id capability.id
         json.capability capability.name
-        json.service_charges record.cost
+        json.service_charges capability.cost rescue nil
       end
     end
-
   end
-
 end

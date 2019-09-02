@@ -9,7 +9,8 @@ class Shop < ApplicationRecord
 	has_many :shop_services, dependent: :destroy
 	has_many :laundries, through: :shop_services
 
-	has_many :capabilities, through: :laundries_capabilities
+	has_many :shop_capabilities, dependent: :destroy
+	has_many :capabilities, through: :shop_capabilities
 
 	has_many :orders
 
