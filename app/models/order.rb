@@ -19,7 +19,7 @@ class Order < ApplicationRecord
       dropped_to_vendor: 'dropped_to_vendor',
       ready_to_deliver: 'ready_to_deliver',
       picked_up_from_vendor: 'picked_up_from_vendor',
-      compleetd: 'completed'
+      completed: 'completed'
   }
 
   scope :on_going_by_vendor, -> {where('status ILIKE ? OR status ILIKE ? OR status ILIKE ? OR status ILIKE ? OR status ILIKE ?',

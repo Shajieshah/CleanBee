@@ -1,5 +1,4 @@
 class Api::V1::NotificationsController < InheritedResources::Base
-  user: text
   include DeviseTokenAuth::Concerns::SetUserByToken
   include ErrorMessage
   before_action :verify_user_logged_in?

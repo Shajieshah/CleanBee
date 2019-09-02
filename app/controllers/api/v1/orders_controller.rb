@@ -63,9 +63,25 @@ class Api::V1::OrdersController < ApplicationController
     begin
       @order = Order.find_by_id params[:id]
       if @order.present?
-      @order.update(order_params)
-      @notifications = Notification.create(message: "Order reached", title: "Order Reached",user_id: @current_user.id)
-      render_success "Order update successfully", 200
+        @order.update(order_params)
+        if (@order.status == 'completed')
+          Notification.create(message: "Don't forget to rate us" , title: 'Order Completed', user_id: @current_user.id)
+        elsif (@order.status == 'picked_up_from_vendor')
+          Notification.create(message: 'On the way', title: 'Picked from Vendor', user_id: @current_user.id)
+        elsif (@order.status == 'ready_to_deliver')
+          Notification.create(message: 'On the way', title: 'Ready To Deliver', user_id: @current_user.id)
+        elsif (@order.status == 'dropped_to_vendor')
+          Notification.create(message: 'Dropped', title: 'Dropped to Vendor', user_id: @current_user.id)
+        elsif (@order.status == 'picked_up_from_customer')
+          Notification.create(message: 'On the way', title: 'Order Picked', user_id: @current_user.id)
+        elsif (@order.status == 'start,')
+          Notification.create(message: 'On the way', title: 'Order Assigned', user_id: @current_user.id)
+        elsif (@order.status == 'ready_to_pickup')
+          Notification.create(message: 'On the way', title: 'Be-Ready', user_id: @current_user.id)
+         else (@order.status == 'pending')
+          Notification.create(message: 'Proceeding', title: 'Order Created', user_id: @current_user.id)
+        end
+        render_success "Order update successfully", 200
       end
     rescue => error
       render_error error.message, 200
